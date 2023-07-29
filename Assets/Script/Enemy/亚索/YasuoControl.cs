@@ -114,7 +114,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
         currentstate.OnUpdate();
         FilpDirection();
 
-        _distance = Vector3.Distance(transform.position, _playerTR.position);
+        _distance = Vector2.Distance(transform.position, _playerTR.position);
 
 
         if (health > 1500 && !_first)

@@ -762,7 +762,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &140031994
 Transform:
   m_ObjectHideFlags: 0
@@ -897,7 +897,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1467461315
+  m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 07b7f9f097c6bba4fa85bad057f26c7e, type: 3}
@@ -1598,7 +1598,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &360022508
 Transform:
   m_ObjectHideFlags: 0
@@ -1733,7 +1733,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1467461315
+  m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 07b7f9f097c6bba4fa85bad057f26c7e, type: 3}
@@ -2157,7 +2157,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.689366, y: -6.75211, z: -2}
+  m_LocalPosition: {x: -0.68937796, y: -6.75211, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2333,7 +2333,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &533054694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2671,7 +2671,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 2.77
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -2724,7 +2724,7 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.7
+      scalar: 0.9
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -7901,7 +7901,7 @@ GameObject:
   - component: {fileID: 858388096}
   - component: {fileID: 858388095}
   - component: {fileID: 858388094}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: "\u6258\u513F\u6240"
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -7916,7 +7916,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 858388092}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 39.4, y: 0, z: 0}
+  m_LocalPosition: {x: -3.27, y: 0, z: 8.21125}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8034,7 +8034,7 @@ MonoBehaviour:
   windspace: {fileID: 1479058772}
   windspaceright: {fileID: 1479928148}
   blood: {fileID: 2009493672}
-  health: 0
+  health: 2000
   idleTime: 0
   direction: 0
   _distance: 0
@@ -13268,7 +13268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1035567357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24514,7 +24514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1428546987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24852,7 +24852,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 2.77
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -24905,7 +24905,7 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.7
+      scalar: 0.9
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -40708,7 +40708,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1923744948
 Transform:
   m_ObjectHideFlags: 0
@@ -40843,7 +40843,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1467461315
+  m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 07b7f9f097c6bba4fa85bad057f26c7e, type: 3}
@@ -40959,7 +40959,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1946314586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41297,7 +41297,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 2.77
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -41350,7 +41350,7 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.7
+      scalar: 0.9
       minScalar: 1
       maxCurve:
         serializedVersion: 2
