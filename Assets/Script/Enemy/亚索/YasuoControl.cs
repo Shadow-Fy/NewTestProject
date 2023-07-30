@@ -20,7 +20,6 @@ public class YasuoControl : MonoBehaviour, IDamageable
     [Header("三阶段使用的物品")]
     public GameObject circle;//保护罩
     public GameObject levelfire;
-    public Animator angel;
     public GameObject groundattack1prefeb;
     public GameObject groundattack2prefeb;
 
@@ -66,7 +65,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
     [Range(0, 2000)] public float health;
     [HideInInspector] public float idleTime;
     private int swordattackcount;
-    private bool isdead;
+    //private bool isdead;
 
 
     [Space]
@@ -403,7 +402,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
             Destroy(gameObject);
 
             health = 0;
-            isdead = true;
+            //isdead = true;
         }
     }
 

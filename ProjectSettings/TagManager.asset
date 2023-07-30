@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - YasuoSword/Sword1
+  - YasuoSword/Sword3
+  - YasuoSword/Sword2
+  - YasuoSword
+  - fire
+  - PlayerAttack
   layers:
   - Default
   - TransparentFX

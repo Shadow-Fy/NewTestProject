@@ -35,7 +35,7 @@ public class Fire_2 : MonoBehaviour
         if (!arrived)
         {
             transform.up = Vector3.Slerp(transform.up, direction, lerp / Vector2.Distance(transform.position, targetpos));
-            rb.velocity = transform.up * 350;
+            rb.velocity = transform.up * 35;
         }
         if (Vector2.Distance(transform.position, targetpos) < 1f && !arrived)
         {

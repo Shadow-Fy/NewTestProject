@@ -30,7 +30,7 @@ public class Attackstate1 : YasuoBaseState
         _rushcount = 1;
 
 
-        if (Yasuo._distance <= 20)
+        if (Yasuo._distance <= 38)
             _attackstate1 = Attackstate1_Enum.Attack;
         else
         {

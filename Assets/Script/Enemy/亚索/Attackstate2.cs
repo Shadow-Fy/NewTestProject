@@ -35,8 +35,8 @@ public class Attackstate2 : YasuoBaseState
     public override void EnterState()
     {
         _attackcount2 = 1;
-        if (Yasuo.angel != null)
-            Yasuo.angel.Play("out");
+        //if (Yasuo.angel != null)
+        //    Yasuo.angel.Play("out");
     }
 
     public override void OnUpdate()

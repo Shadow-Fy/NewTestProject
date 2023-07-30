@@ -20,7 +20,7 @@ public class Fire : MonoBehaviour
 
     public void Move()//飞行
     {
-        transform.position += 10f * transform.up;
+        transform.position += transform.up * 0.7f;
         if (lifetime <= 0)
         {
             ObjectPool.Instance.PushObject(gameObject);
