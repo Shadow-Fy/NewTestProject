@@ -59,7 +59,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
     public Rigidbody2D _Rb
     {
         get { return rb; }
-        set { rb = value; }
+        set { rb = GetComponent<Rigidbody2D>(); }
     }
     public Blood blood;
     [Range(0, 2000)] public float health;
@@ -88,7 +88,6 @@ public class YasuoControl : MonoBehaviour, IDamageable
 
     private void Awake()
     {
-
     }
 
     void Start()
@@ -97,6 +96,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
         _PlayerTR = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         _Anim = GetComponent<Animator>();
         _Rb = GetComponent<Rigidbody2D>();
+        _Rb.bodyType = RigidbodyType2D.Dynamic;
         states.Add(YasuoState_Enum.Idle, new Idle(this));
         states.Add(YasuoState_Enum.Attackstate1, new Attackstate1(this));
         states.Add(YasuoState_Enum.Attackstate2, new Attackstate2(this));
