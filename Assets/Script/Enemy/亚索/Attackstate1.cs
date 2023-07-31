@@ -30,7 +30,7 @@ public class Attackstate1 : YasuoBaseState
         _rushcount = 1;
 
 
-        if (Yasuo._distance <= 38)
+        if (Yasuo._distance <= 30)
             _attackstate1 = Attackstate1_Enum.Attack;
         else
         {
@@ -40,6 +40,7 @@ public class Attackstate1 : YasuoBaseState
 
     public override void OnUpdate()
     {
+        Debug.Log(_rushcount);
         _swordtime -= Time.deltaTime;
         if (_swordtime <= 0)
         {
@@ -118,7 +119,7 @@ public class Attackstate1 : YasuoBaseState
                 if (Yasuo.direction == 1)
                 {
 
-                    Yasuo.transform.position = Yasuo.rightparticle.transform.position + new Vector3(+1, 0, 0);
+                    Yasuo.transform.position = new Vector3(Yasuo.rightparticle.transform.position.x, -18.77f) + new Vector3(+1, 0, 0);
                     Yasuo.transform.rotation = Quaternion.Euler(0, 180, 0);
                     Yasuo.rightparticle.SetActive(true);
 
@@ -138,8 +139,8 @@ public class Attackstate1 : YasuoBaseState
                 }
                 break;
             case 2:
-                Yasuo.transform.position = Vector2.MoveTowards(Yasuo.transform.position, _PlayerPoint, 200 * Time.deltaTime);
-                if (Vector3.Distance(Yasuo.transform.position, _PlayerPoint) < 0.1f)
+                Yasuo.transform.position = Vector2.MoveTowards(Yasuo.transform.position, new Vector2(_PlayerPoint.x, Yasuo.transform.position.y), 200 * Time.deltaTime);
+                if (Vector2.Distance(Yasuo.transform.position, _PlayerPoint) < 0.1f)
                 {
                     Yasuo._Anim.Play("attack_3");
                 }

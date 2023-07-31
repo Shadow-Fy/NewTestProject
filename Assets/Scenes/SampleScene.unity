@@ -764,7 +764,7 @@ MonoBehaviour:
   - {fileID: 1250624336}
   m_Instructions:
   - m_VirtualCamera: {fileID: 1285423142}
-    m_Hold: 1
+    m_Hold: 3
     m_Blend:
       m_Style: 0
       m_Time: 0
@@ -777,7 +777,7 @@ MonoBehaviour:
   - m_VirtualCamera: {fileID: 1250624336}
     m_Hold: 4
     m_Blend:
-      m_Style: 1
+      m_Style: 2
       m_Time: 1
       m_CustomCurve:
         serializedVersion: 2
@@ -788,7 +788,7 @@ MonoBehaviour:
   - m_VirtualCamera: {fileID: 1285423142}
     m_Hold: 0
     m_Blend:
-      m_Style: 1
+      m_Style: 2
       m_Time: 1
       m_CustomCurve:
         serializedVersion: 2
@@ -8108,7 +8108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753987623}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 26.269997, y: -18.42, z: 4.967622}
+  m_LocalPosition: {x: 26.3, y: -18.42, z: 4.967622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13995,6 +13995,8 @@ PlayableDirector:
     value: {fileID: 2013978601}
   - key: {fileID: -7995750779286893122, guid: e844555d96aee1d45a315127b22c4766, type: 2}
     value: {fileID: 2013978599}
+  - key: {fileID: -1275535955076824482, guid: e844555d96aee1d45a315127b22c4766, type: 2}
+    value: {fileID: 1479928148}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1041649391
@@ -19439,7 +19441,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1250624336
 MonoBehaviour:
   m_ObjectHideFlags: 0

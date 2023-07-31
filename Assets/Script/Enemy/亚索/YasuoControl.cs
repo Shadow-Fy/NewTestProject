@@ -84,12 +84,6 @@ public class YasuoControl : MonoBehaviour, IDamageable
     public bool _first;
     public bool _second;
     public bool _third;
-
-
-    private void Awake()
-    {
-    }
-
     void Start()
     {
         blood.curHP = (int)health;
@@ -230,7 +224,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
     public void Wind()/* 攻击特效吹风 用事件帧实现 */
     {
         GameObject _wind = ObjectPool.Instance.GetObject(wind);
-        _wind.transform.position = new Vector2(transform.position.x - direction * 3f, transform.position.y + 2.5f);
+        _wind.transform.position = new Vector2(transform.position.x - direction * 3f, transform.position.y + 1.7f);
         _wind.transform.rotation = Quaternion.Euler(0, 90 + direction * 90, 0);
     }
 
