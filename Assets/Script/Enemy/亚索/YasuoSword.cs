@@ -165,11 +165,11 @@ public class YasuoSword : MonoBehaviour
         _attack1time -= Time.deltaTime;
         switch (_attack1choose)
         {
-            case 1:
-                if (transform.position.y <= 20)
+            case 1: //确定目标
+                if (transform.position.y <= 0)
                 {
                     _currentposition = transform.position;
-                    _target = new Vector2(transform.position.x, 0);
+                    _target = new Vector2(transform.position.x, -2);
                 }
                 if (Vector3.Distance(transform.position, _target) < 0.1f)
                 {
@@ -179,10 +179,10 @@ public class YasuoSword : MonoBehaviour
                     _attack1choose = 2;
                 }
                 break;
-            case 2:
+            case 2: //后退
                 float angle = Mathf.Atan2(单位向量.x, 单位向量.y) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 90 - angle), Time.deltaTime * 20);
-                _target = _currentposition + 5 * 单位向量;
+                _target = _currentposition + 3.5f * 单位向量;
                 speed = 30;
                 coll.enabled = true;
                 if (Vector3.Distance(transform.position, _target) < 0.1f && _attack1time < 0)
@@ -192,7 +192,7 @@ public class YasuoSword : MonoBehaviour
                     _attack1choose = 3;
                 }
                 break;
-            case 3:
+            case 3: //前冲
                 speed = 90;
                 _target = _playercurrentposition - 10 * 当前单位向量;
                 if (Vector3.Distance(transform.position, _target) < 0.1f)

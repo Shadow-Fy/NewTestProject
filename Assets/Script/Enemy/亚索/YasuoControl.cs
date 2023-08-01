@@ -17,6 +17,12 @@ public class YasuoControl : MonoBehaviour, IDamageable
     public GameObject Sword3;
 
     [Space]
+    [Header("二阶段使用的物品")]
+    public Transform flyPointLeftUp;   //飞天攻击最高点
+    public Transform flyPointRightDown;   //飞天攻击最低点
+    public Transform groundPoint;   //地刺攻击地面起点
+
+    [Space]
     [Header("三阶段使用的物品")]
     public GameObject circle;//保护罩
     public GameObject levelfire;
@@ -70,6 +76,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
 
     [Space]
     [Header("其他属性")]
+    [HideInInspector] public bool canhurt = false;
     private Transform _playerTR;
     public Transform _PlayerTR
     {
@@ -116,7 +123,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
             TransitionState(YasuoState_Enum.Attackstate1);
 
         }
-        else if (health < 1500 && health >= 900 && !_second)
+        else if (health <= 1500 && health >= 900 && !_second)
         {
             if (Sword2.activeInHierarchy == false)
                 Sword2.SetActive(true);
@@ -250,7 +257,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
             fireattack.transform.position = transform.position;
             Vector2 direction = _PlayerTR.position - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;/* 计算角度 */
-            fireattack.transform.rotation = Quaternion.AngleAxis(angle + i * 20 + 250, Vector3.forward);
+            fireattack.transform.rotation = Quaternion.AngleAxis(angle + i * 20 + 270, Vector3.forward);
         }
         yield return new WaitForSeconds(0.3f);
         for (int i = -4; i < 5; i++)
@@ -259,7 +266,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
             fireattack.transform.position = transform.position;
             Vector2 direction = _PlayerTR.position - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;/* 计算角度 */
-            fireattack.transform.rotation = Quaternion.AngleAxis(angle + i * 20 + 290, Vector3.forward);
+            fireattack.transform.rotation = Quaternion.AngleAxis(angle + i * 20 + 270, Vector3.forward);
         }
         yield return null;
     }
@@ -358,16 +365,18 @@ public class YasuoControl : MonoBehaviour, IDamageable
 
     IEnumerator Ground()
     {
+        //白色
         GameObject groundattack1 = ObjectPool.Instance.GetObject(groundattack1prefeb);
-        groundattack1.transform.position = new Vector2(transform.position.x - groundattackcount * 4, -9.4f);
+        groundattack1.transform.position = new Vector2(transform.position.x - groundattackcount * 3.2f, groundPoint.position.y);
         GameObject groundattack1_2 = ObjectPool.Instance.GetObject(groundattack1prefeb);
-        groundattack1_2.transform.position = new Vector2(transform.position.x + groundattackcount * 4, -9.4f);
+        groundattack1_2.transform.position = new Vector2(transform.position.x + groundattackcount * 3.2f, groundPoint.position.y);
         yield return new WaitForSeconds(0.1f);
+        //蓝色
         GameObject groundattack2 = ObjectPool.Instance.GetObject(groundattack2prefeb);
-        groundattack2.transform.position = new Vector2(transform.position.x - groundattackcount * 4, -9.4f);
+        groundattack2.transform.position = new Vector2(transform.position.x - groundattackcount * 3.2f, groundPoint.position.y);
         GameObject groundattack2_2 = ObjectPool.Instance.GetObject(groundattack2prefeb);
-        groundattack2_2.transform.position = new Vector2(transform.position.x + groundattackcount * 4, -9.4f);
-        yield return new WaitForSeconds(0.1f);
+        groundattack2_2.transform.position = new Vector2(transform.position.x + groundattackcount * 3.2f, groundPoint.position.y);
+        yield return new WaitForSeconds(0.2f);
         GroundAttack();
         yield return null;
     }
@@ -380,23 +389,26 @@ public class YasuoControl : MonoBehaviour, IDamageable
 
     public void GetHit(float damage)
     {
-        blood.GetDamage((int)damage);
-        health -= (int)damage;
-        GameObject point = ObjectPool.Instance.GetObject(floatpoint);
-        point.transform.position = transform.position;
-        point.transform.GetChild(0).GetComponent<TextMesh>().text = damage.ToString();
-        if (health < 1)
+        if (canhurt)
         {
-            // if (!dropsword)
-            // {
-            //     GameObject wingitem = ObjectPool.Instance.GetObject(wingprefeb);
-            //     wingitem.transform.position = transform.position;
-            //     dropsword = true;
-            // }
-            Destroy(gameObject);
+            blood.GetDamage((int)damage);
+            health -= (int)damage;
+            GameObject point = ObjectPool.Instance.GetObject(floatpoint);
+            point.transform.position = transform.position;
+            point.transform.GetChild(0).GetComponent<TextMesh>().text = damage.ToString();
+            if (health < 1)
+            {
+                // if (!dropsword)
+                // {
+                //     GameObject wingitem = ObjectPool.Instance.GetObject(wingprefeb);
+                //     wingitem.transform.position = transform.position;
+                //     dropsword = true;
+                // }
+                Destroy(gameObject);
 
-            health = 0;
-            //isdead = true;
+                health = 0;
+                //isdead = true;
+            }
         }
     }
 

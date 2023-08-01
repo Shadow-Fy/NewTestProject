@@ -40,7 +40,6 @@ public class Attackstate1 : YasuoBaseState
 
     public override void OnUpdate()
     {
-        Debug.Log(_rushcount);
         _swordtime -= Time.deltaTime;
         if (_swordtime <= 0)
         {

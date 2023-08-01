@@ -9,25 +9,34 @@ public class BossStart : MonoBehaviour
     public GameObject vcam2;
     public GameObject bar;
     public PlayableDirector director;
+    public GameObject boundaryLeft;
+    public GameObject boundaryRight;
     private BoxCollider2D box => GetComponent<BoxCollider2D>();
 
     public YasuoControl yasuoControl;
+    private GameObject player;
 
-    private void Awake()
+    private void Start()
     {
         director.stopped += StartBoss;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
     public void StartBoss(PlayableDirector obj)
     {
 
         bar.SetActive(true);
         yasuoControl.enabled = true;
+        yasuoControl.canhurt = true;
+        boundaryLeft.SetActive(true);
+        boundaryRight.SetActive(true);
+        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             vcam1.SetActive(false);
             vcam2.SetActive(true);
             director.Play();

@@ -17,7 +17,7 @@ public class Attackstate2 : YasuoBaseState
 
 
     private int _attackcount2;
-    private float 大招蓄力 = 0.07f;
+    private float 大招蓄力 = 0.07f; 
     private Vector3 movePos;
     private Vector3 _groundposition;
 
@@ -35,30 +35,10 @@ public class Attackstate2 : YasuoBaseState
     public override void EnterState()
     {
         _attackcount2 = 1;
-        //if (Yasuo.angel != null)
-        //    Yasuo.angel.Play("out");
     }
 
     public override void OnUpdate()
     {
-        //_swordtime -= Time.deltaTime;
-        //if (_swordtime <= 0)
-        //{
-        //    if (swordattackchoose == 1)
-        //    {
-        //Yasuo.Sword1.GetComponent<YasuoSword>().StartAttack1();
-        //Yasuo.Sword2.GetComponent<YasuoSword>().StartAttack1();
-        //        swordattackchoose = 2;
-        //    }
-        //    else
-        //    {
-        //Yasuo.Sword1.GetComponent<YasuoSword>().StartAttack2();
-        //Yasuo.Sword2.GetComponent<YasuoSword>().StartAttack2();
-        //        swordattackchoose = 1;
-        //    }
-        //    _swordtime = 6;
-        //}
-
         Yasuo.StartWind();
         switch (_attackstate2)
         {
@@ -143,19 +123,20 @@ public class Attackstate2 : YasuoBaseState
 
     void FlyAttack()
     {
+        Vector2 mid = new Vector2((Yasuo.flyPointLeftUp.position.x + Yasuo.flyPointRightDown.position.x) / 2, Yasuo.flyPointLeftUp.position.y);
         switch (_flyattackcount2)
         {
-            case 1:
+            case 1: //找点
                 Yasuo.Sword1.GetComponent<YasuoSword>().StartAttack1();
                 Yasuo.Sword2.GetComponent<YasuoSword>().StartAttack1();
                 Yasuo.groundattackcount = 1;
                 _groundposition = Yasuo.transform.position;
-                movePos = new Vector3(Yasuo.transform.position.x, Random.Range(6, 15));
+                movePos = new Vector3(Yasuo.transform.position.x, Random.Range(Yasuo.flyPointRightDown.position.y, Yasuo.flyPointLeftUp.position.y));
                 Yasuo._Rb.gravityScale = 0;/* 初始重力为3 */
                 Yasuo.wing.SetActive(true);
                 _flyattackcount2 = 2;
                 break;
-            case 2:
+            case 2: //起飞，找下一个点
                 _flyattacktime -= Time.deltaTime;
                 if (_flyattacktime <= 0)
                 {
@@ -169,7 +150,7 @@ public class Attackstate2 : YasuoBaseState
                     }
                 }
                 break;
-            case 3:
+            case 3: //移动到下一个点攻击，找下一个点
                 Yasuo.Sword1.GetComponent<YasuoSword>().StartAttack1();
                 Yasuo.Sword2.GetComponent<YasuoSword>().StartAttack1();
                 _flyattacktime -= Time.deltaTime;
@@ -185,7 +166,7 @@ public class Attackstate2 : YasuoBaseState
                     }
                 }
                 break;
-            case 4:
+            case 4: //移动到下一个点攻击
                 _flyattacktime -= Time.deltaTime;
                 if (_flyattacktime <= 0)
                 {
@@ -198,12 +179,12 @@ public class Attackstate2 : YasuoBaseState
                     }
                 }
                 break;
-            case 5:
+            case 5: //飞到中间
                 _flyattacktime -= Time.deltaTime;
                 if (_flyattacktime <= 0)
                 {
-                    Yasuo.transform.position = Vector2.MoveTowards(Yasuo.transform.position, new Vector2(0, 15), 100 * Time.deltaTime);
-                    if (Vector3.Distance(Yasuo.transform.position, new Vector2(0, 15)) < 0.1f)
+                    Yasuo.transform.position = Vector2.MoveTowards(Yasuo.transform.position, mid, 100 * Time.deltaTime);
+                    if (Vector3.Distance(Yasuo.transform.position, mid) < 0.1f)
                     {
                         _flyattackcount2 = 6;
                         _flyattacktime = 0.5f;
@@ -212,9 +193,9 @@ public class Attackstate2 : YasuoBaseState
                     }
                 }
                 break;
-            case 6:
-                Yasuo.transform.position = Vector2.MoveTowards(Yasuo.transform.position, new Vector2(0, _groundposition.y), 300 * Time.deltaTime);
-                if (Vector3.Distance(Yasuo.transform.position, new Vector2(0, _groundposition.y)) < 0.1f)
+            case 6: //下落
+                Yasuo.transform.position = Vector2.MoveTowards(Yasuo.transform.position, new Vector2(mid.x, _groundposition.y), 300 * Time.deltaTime);
+                if (Vector3.Distance(Yasuo.transform.position, new Vector2(mid.x, _groundposition.y)) < 0.1f)
                 {
                     Camera.main.DOShakePosition(0.5f, new Vector3(0, -3, 0));
                     Yasuo.GroundAttack();
@@ -230,6 +211,7 @@ public class Attackstate2 : YasuoBaseState
 
     void RushAttack()
     {
+
         switch (_rushcount)
         {
             case 1:
@@ -289,15 +271,14 @@ public class Attackstate2 : YasuoBaseState
 
     private void RandomRangeMovePos()
     {
-        if (Yasuo.transform.position.x > 0)
+        float mid = (Yasuo.flyPointLeftUp.position.x + Yasuo.flyPointRightDown.position.x) / 2.0f;
+        if (Yasuo.transform.position.x > mid)
         {
-            movePos = new Vector3(Random.Range(-36, 0), Random.Range(5, 15));
+            movePos = new Vector3(Random.Range(Yasuo.flyPointLeftUp.position.x, mid), Random.Range(Yasuo.flyPointLeftUp.position.y, Yasuo.flyPointRightDown.position.y));
         }
         else
         {
-            movePos = new Vector3(Random.Range(0, 36), Random.Range(5, 15));
+            movePos = new Vector3(Random.Range(mid, Yasuo.flyPointRightDown.position.x), Random.Range(Yasuo.flyPointLeftUp.position.y, Yasuo.flyPointRightDown.position.y));
         }
     }
-
-
 }
