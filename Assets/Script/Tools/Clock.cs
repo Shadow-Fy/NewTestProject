@@ -5,14 +5,19 @@ using UnityEngine.Events;
 
 namespace Clock
 {
-    public class Clock : MonoBehaviour
+    public class Clock : Singleton<Clock>
     {
         float time = 0.0f;
+        float clearTime = 0.0f;
         public float ClearTime{
-            get{return time;}
+            get{return clearTime;}
         }
-        // Update is called once per frame
         UnityAction action = null;
+
+        protected override void Awake(){
+            base.Awake();
+            DontDestroyOnLoad(this);
+        }
 
         private void Start() {
             action += Timing;    
@@ -22,17 +27,28 @@ namespace Clock
             action?.Invoke();
         }
 
+        //计时开始
         public void StartTiming(){
-            time = 0.0f;
             action += Timing;
         }
         
-        public void StopTiming(){
+        //计时结束
+        public void EndTiming(){
             action -= Timing;
+            clearTime = Instance.time;
+            time = 0.0f;
         }
 
+        //计时暂停
+        public void StopTiming(){
+            action -= Timing;
+            clearTime = Instance.time;
+        }
+
+        //计时函数
         void Timing(){
-            time += Time.deltaTime;
+            Instance.time += Time.deltaTime;
+            clearTime = Instance.time;
             Debug.Log(time);
         }
     }
