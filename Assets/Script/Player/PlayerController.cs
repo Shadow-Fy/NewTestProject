@@ -141,7 +141,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public virtual void Movement()
     {
-        rb.velocity = new Vector2(horizontalmove_float * speed, rb.velocity.y);
+        if (rb.bodyType == RigidbodyType2D.Dynamic)
+            rb.velocity = new Vector2(horizontalmove_float * speed, rb.velocity.y);
 
         if (horizontalmove_int != 0)
             transform.localScale = new Vector3(horizontalmove_int, 1, 1);
@@ -159,7 +160,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         isground = Physics2D.OverlapCircle(groundcheck.position, checkradius, groundlayer);
 
-        if (canjump)
+        if (canjump && rb.bodyType == RigidbodyType2D.Dynamic)
         {
             if (jumpcount == 1)
             {
@@ -169,6 +170,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
             }
             jumpcount--;
+
             rb.velocity = new Vector2(rb.velocity.x, jumpforce);
             //rb.velocity = new Vector2(rb.velocity.x, 0);
             //rb.velocity += Vector2.up * jumpforce;
@@ -225,7 +227,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     protected virtual void Dash()
     {
-        if (isDash)
+        if (isDash && rb.bodyType == RigidbodyType2D.Dynamic)
         {
             anim.SetBool("dash", true);
             anim.SetBool("run", false);

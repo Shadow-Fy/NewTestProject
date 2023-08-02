@@ -500,7 +500,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37935526}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.15, y: -19.674646, z: 8}
+  m_LocalPosition: {x: 12.15, y: -19.923, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -581,7 +581,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1740605885, guid: 0f960687862de074e8329cd75d35dce8, type: 3}
+  m_Sprite: {fileID: 825989200, guid: a2bfacdea9f75954394ed34c7b18b211, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8866,7 +8866,7 @@ Rigidbody2D:
   m_Mass: 15
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 6
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -8988,7 +8988,7 @@ MonoBehaviour:
   windspace: {fileID: 1479058772}
   windspaceright: {fileID: 1479928148}
   blood: {fileID: 2009493672}
-  health: 2000
+  health: 1267
   idleTime: 0
   canhurt: 0
   direction: 0
@@ -42224,7 +42224,7 @@ GameObject:
   - component: {fileID: 1866301961}
   - component: {fileID: 1866301963}
   - component: {fileID: 1866301962}
-  m_Layer: 14
+  m_Layer: 12
   m_Name: RushAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42239,7 +42239,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866301960}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -74.2, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

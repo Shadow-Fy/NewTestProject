@@ -366,6 +366,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
     IEnumerator Ground()
     {
         //白色
+        yield return new WaitForSeconds(0.18f);
         GameObject groundattack1 = ObjectPool.Instance.GetObject(groundattack1prefeb);
         groundattack1.transform.position = new Vector2(transform.position.x - groundattackcount * 3.2f, groundPoint.position.y);
         GameObject groundattack1_2 = ObjectPool.Instance.GetObject(groundattack1prefeb);
@@ -376,7 +377,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
         groundattack2.transform.position = new Vector2(transform.position.x - groundattackcount * 3.2f, groundPoint.position.y);
         GameObject groundattack2_2 = ObjectPool.Instance.GetObject(groundattack2prefeb);
         groundattack2_2.transform.position = new Vector2(transform.position.x + groundattackcount * 3.2f, groundPoint.position.y);
-        yield return new WaitForSeconds(0.2f);
+
         GroundAttack();
         yield return null;
     }

@@ -17,7 +17,7 @@ public class Attackstate2 : YasuoBaseState
 
 
     private int _attackcount2;
-    private float 大招蓄力 = 0.07f; 
+    private float 大招蓄力 = 0.07f;
     private Vector3 movePos;
     private Vector3 _groundposition;
 
@@ -127,6 +127,8 @@ public class Attackstate2 : YasuoBaseState
         switch (_flyattackcount2)
         {
             case 1: //找点
+                Yasuo._Anim.SetBool("run", false);
+                Yasuo._Anim.SetBool("idle", true);
                 Yasuo.Sword1.GetComponent<YasuoSword>().StartAttack1();
                 Yasuo.Sword2.GetComponent<YasuoSword>().StartAttack1();
                 Yasuo.groundattackcount = 1;
@@ -211,7 +213,7 @@ public class Attackstate2 : YasuoBaseState
 
     void RushAttack()
     {
-
+        float midX = (Yasuo.rightparticle.transform.position.x + Yasuo.leftparticle.transform.position.x) / 2.0f;
         switch (_rushcount)
         {
             case 1:
@@ -227,7 +229,7 @@ public class Attackstate2 : YasuoBaseState
                     Yasuo._Anim.SetBool("run", false);
                     Yasuo._Anim.SetBool("idle", true);
                     Yasuo._Anim.Play("rush");
-                    if (Yasuo.transform.position.x > 0)
+                    if (Yasuo.transform.position.x >= midX)
                     {
                         _rushpoint = Yasuo.leftparticle.transform.position;
                         Yasuo.transform.position = Yasuo.rightparticle.transform.position + new Vector3(+1, 0, 0);
@@ -250,7 +252,7 @@ public class Attackstate2 : YasuoBaseState
                 break;
             case 2:
                 Yasuo.transform.position = Vector2.MoveTowards(Yasuo.transform.position, _rushpoint, 180 * Time.deltaTime);
-                if (Vector3.Distance(Yasuo.transform.position, _rushpoint) < 0.1f)
+                if (Vector2.Distance(Yasuo.transform.position, _rushpoint) < 0.1f)
                 {
                     _rushcount = 1;
                     _rushtime = 1.5f;
