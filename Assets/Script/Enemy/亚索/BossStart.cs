@@ -5,9 +5,9 @@ using UnityEngine.Playables;
 
 public class BossStart : MonoBehaviour
 {
+    public GameObject bar;
     public GameObject vcam1;
     public GameObject vcam2;
-    public GameObject bar;
     public PlayableDirector director;
     public GameObject boundaryLeft;
     public GameObject boundaryRight;
@@ -23,7 +23,6 @@ public class BossStart : MonoBehaviour
     }
     public void StartBoss(PlayableDirector obj)
     {
-
         bar.SetActive(true);
         yasuoControl.enabled = true;
         yasuoControl.canhurt = true;

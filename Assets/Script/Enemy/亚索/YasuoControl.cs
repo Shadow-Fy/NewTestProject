@@ -18,6 +18,8 @@ public class YasuoControl : MonoBehaviour, IDamageable
 
     [Space]
     [Header("二阶段使用的物品")]
+    private bool startlevel2;
+    public BossLevel2 bossLevel2;
     public Transform flyPointLeftUp;   //飞天攻击最高点
     public Transform flyPointRightDown;   //飞天攻击最低点
     public Transform groundPoint;   //地刺攻击地面起点
@@ -96,6 +98,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
     public bool _third;
     void Start()
     {
+        startlevel2 = true;
         blood.curHP = (int)health;
         _PlayerTR = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         _Anim = GetComponent<Animator>();
@@ -128,11 +131,15 @@ public class YasuoControl : MonoBehaviour, IDamageable
         }
         else if (health <= 1500 && health >= 900 && !_second)
         {
+            if (startlevel2)
+            {
+                bossLevel2.TimeLinePlay();
+                startlevel2 = false;
+            }
             if (Sword2.activeInHierarchy == false)
                 Sword2.SetActive(true);
             TransitionState(YasuoState_Enum.Attackstate2);
-            vcam2.SetActive(false);
-            vcam3.SetActive(true);
+
             _second = true;
         }
         else if (health < 900 && !_third)
@@ -373,7 +380,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
     IEnumerator Ground()
     {
         //白色
-        yield return new WaitForSeconds(0.18f);
+        yield return new WaitForSeconds(0.1f);
         GameObject groundattack1 = ObjectPool.Instance.GetObject(groundattack1prefeb);
         groundattack1.transform.position = new Vector2(transform.position.x - groundattackcount * 3.2f, groundPoint.position.y);
         GameObject groundattack1_2 = ObjectPool.Instance.GetObject(groundattack1prefeb);
@@ -384,7 +391,6 @@ public class YasuoControl : MonoBehaviour, IDamageable
         groundattack2.transform.position = new Vector2(transform.position.x - groundattackcount * 3.2f, groundPoint.position.y);
         GameObject groundattack2_2 = ObjectPool.Instance.GetObject(groundattack2prefeb);
         groundattack2_2.transform.position = new Vector2(transform.position.x + groundattackcount * 3.2f, groundPoint.position.y);
-
         GroundAttack();
         yield return null;
     }
