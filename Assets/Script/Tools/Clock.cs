@@ -20,7 +20,7 @@ namespace Clock
         }
 
         private void Start() {
-            action += Timing;    
+            // action += Timing;    
         }
 
         void FixedUpdate(){
