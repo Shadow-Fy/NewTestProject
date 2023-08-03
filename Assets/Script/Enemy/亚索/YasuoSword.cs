@@ -58,7 +58,6 @@ public class YasuoSword : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, _target, speed * Time.deltaTime);
 
 
-
         ObjectPool.Instance.GetObject(_shadowprefab);
 
 
@@ -256,10 +255,10 @@ public class YasuoSword : MonoBehaviour
         switch (_attack3choose)
         {
             case 1:
-                _target = new Vector3(_originPosition.x * 7, 50, 0);
+                _target = new Vector3(58.91055f + _originPosition.x * 6, 20, 0);
                 if (Vector3.Distance(transform.position, _target) < 0.1f)
                 {
-                    transform.localScale = new Vector3(7, 7);
+                    transform.localScale = new Vector3(-7, 7);
                     transform.rotation = Quaternion.Euler(0, 0, 90);
                     speed = 30;
                     _attack3choose = 2;
@@ -271,7 +270,7 @@ public class YasuoSword : MonoBehaviour
                 _target = new Vector3(_target.x, -50, 0);
                 if (Vector3.Distance(transform.position, _target) < 0.1f)
                 {
-                    transform.localScale = new Vector3(1, 1);
+                    transform.localScale = new Vector3(-1, 1);
                     _attack3choose = 0;
                     _isattack_3 = false;
                     coll.enabled = false;

@@ -35,6 +35,9 @@ public class YasuoControl : MonoBehaviour, IDamageable
 
     [Space]
     [Header("基础属性道具")]
+    public GameObject vcam2;
+    public GameObject vcam3;
+    public GameObject vcam4;
     public float groundattackcount = 0;
     public GameObject RushAttackCheck;
     private float windcd = 0f;
@@ -128,6 +131,8 @@ public class YasuoControl : MonoBehaviour, IDamageable
             if (Sword2.activeInHierarchy == false)
                 Sword2.SetActive(true);
             TransitionState(YasuoState_Enum.Attackstate2);
+            vcam2.SetActive(false);
+            vcam3.SetActive(true);
             _second = true;
         }
         else if (health < 900 && !_third)
@@ -135,6 +140,8 @@ public class YasuoControl : MonoBehaviour, IDamageable
             if (Sword3.activeInHierarchy == false)
                 Sword3.SetActive(true);
             TransitionState(YasuoState_Enum.Attackstate3);
+            vcam3.SetActive(false);
+            vcam4.SetActive(true);
             _third = true;
         }
     }
