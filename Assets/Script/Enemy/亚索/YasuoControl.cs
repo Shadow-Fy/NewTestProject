@@ -26,6 +26,8 @@ public class YasuoControl : MonoBehaviour, IDamageable
 
     [Space]
     [Header("三阶段使用的物品")]
+    private bool startlevel3;
+    public BossLevel3 bossLevel3;
     public GameObject circle;//保护罩
     public GameObject levelfire;
     public GameObject groundattack1prefeb;
@@ -99,6 +101,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
     void Start()
     {
         startlevel2 = true;
+        startlevel3 = true;
         blood.curHP = (int)health;
         _PlayerTR = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         _Anim = GetComponent<Animator>();
@@ -144,6 +147,15 @@ public class YasuoControl : MonoBehaviour, IDamageable
         }
         else if (health < 900 && !_third)
         {
+            if (startlevel3)
+            {
+                bossLevel3.TimeLinePlay();
+                startlevel3 = false;
+            }
+            if (Sword1.activeInHierarchy == true)
+                Sword1.SetActive(false);
+            if (Sword2.activeInHierarchy == true)
+                Sword2.SetActive(false);
             if (Sword3.activeInHierarchy == false)
                 Sword3.SetActive(true);
             TransitionState(YasuoState_Enum.Attackstate3);
@@ -191,6 +203,10 @@ public class YasuoControl : MonoBehaviour, IDamageable
         }
         else if (health < 900)
         {
+            if (Sword1.activeInHierarchy == true)
+                Sword1.SetActive(false);
+            if (Sword2.activeInHierarchy == true)
+                Sword2.SetActive(false);
             if (Sword3.activeInHierarchy == false)
                 Sword3.SetActive(true);
             TransitionState(YasuoState_Enum.Attackstate3);

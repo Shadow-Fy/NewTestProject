@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class BossLevel2 : MonoBehaviour
+public class BossLevel3 : MonoBehaviour
 {
     public GameObject bar;
-    public GameObject vcam2;
     public GameObject vcam3;
+    public GameObject vcam4;
     public PlayableDirector director;
-    public GameObject boundaryLeft1;
-    public GameObject boundaryRight1;
     public GameObject boundaryLeft2;
     public GameObject boundaryRight2;
-    private BoxCollider2D box => GetComponent<BoxCollider2D>();
+    public GameObject boundaryLeft3;
+    public GameObject boundaryRight3;
 
     public YasuoControl yasuoControl;
     private GameObject player;
@@ -29,8 +28,8 @@ public class BossLevel2 : MonoBehaviour
         yasuoControl.canhurt = false;
         yasuoControl.enabled = false;
         director.Play();
-        vcam2.SetActive(false);
-        vcam3.SetActive(true);
+        vcam3.SetActive(false);
+        vcam4.SetActive(true);
         player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
     }
 
@@ -39,10 +38,10 @@ public class BossLevel2 : MonoBehaviour
         bar.SetActive(true);
         yasuoControl.enabled = true;
         yasuoControl.canhurt = true;
-        boundaryLeft1.SetActive(false);
-        boundaryRight1.SetActive(false);
-        boundaryLeft2.SetActive(true);
-        boundaryRight2.SetActive(true);
+        boundaryLeft2.SetActive(false);
+        boundaryRight2.SetActive(false);
+        boundaryLeft3.SetActive(true);
+        boundaryRight3.SetActive(true);
         player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     }
 }
