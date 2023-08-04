@@ -25,7 +25,7 @@ public class YasuoSwordFire : MonoBehaviour
     {
         lifetime -= Time.deltaTime;
 
-        transform.position +=  -transform.right * 10;
+        transform.position +=  -transform.right;
         if (lifetime <= 0)
         {
             ObjectPool.Instance.PushObject(gameObject);

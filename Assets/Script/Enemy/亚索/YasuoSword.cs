@@ -211,7 +211,6 @@ public class YasuoSword : MonoBehaviour
         {
             GameObject swordfire = ObjectPool.Instance.GetObject(_yasuoSwordFire);
             swordfire.transform.position = transform.position;
-            swordfire.transform.rotation = transform.rotation;
             _fire2time = 0.13f;
         }
         switch (_attack2choose)
@@ -291,6 +290,8 @@ public class YasuoSword : MonoBehaviour
                 break;
         }
     }
+
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
