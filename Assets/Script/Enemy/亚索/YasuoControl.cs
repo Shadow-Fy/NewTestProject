@@ -18,12 +18,16 @@ public class YasuoControl : MonoBehaviour, IDamageable
 
     [Space]
     [Header("二阶段使用的物品")]
+    private bool startlevel2;
+    public BossLevel2 bossLevel2;
     public Transform flyPointLeftUp;   //飞天攻击最高点
     public Transform flyPointRightDown;   //飞天攻击最低点
     public Transform groundPoint;   //地刺攻击地面起点
 
     [Space]
     [Header("三阶段使用的物品")]
+    private bool startlevel3;
+    public BossLevel3 bossLevel3;
     public GameObject circle;//保护罩
     public GameObject levelfire;
     public GameObject groundattack1prefeb;
@@ -35,6 +39,9 @@ public class YasuoControl : MonoBehaviour, IDamageable
 
     [Space]
     [Header("基础属性道具")]
+    public GameObject vcam2;
+    public GameObject vcam3;
+    public GameObject vcam4;
     public float groundattackcount = 0;
     public GameObject RushAttackCheck;
     private float windcd = 0f;
@@ -93,6 +100,8 @@ public class YasuoControl : MonoBehaviour, IDamageable
     public bool _third;
     void Start()
     {
+        startlevel2 = true;
+        startlevel3 = true;
         blood.curHP = (int)health;
         _PlayerTR = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         _Anim = GetComponent<Animator>();
@@ -125,16 +134,33 @@ public class YasuoControl : MonoBehaviour, IDamageable
         }
         else if (health <= 1500 && health >= 900 && !_second)
         {
+            if (startlevel2)
+            {
+                bossLevel2.TimeLinePlay();
+                startlevel2 = false;
+            }
             if (Sword2.activeInHierarchy == false)
                 Sword2.SetActive(true);
             TransitionState(YasuoState_Enum.Attackstate2);
+
             _second = true;
         }
         else if (health < 900 && !_third)
         {
+            if (startlevel3)
+            {
+                bossLevel3.TimeLinePlay();
+                startlevel3 = false;
+            }
+            if (Sword1.activeInHierarchy == true)
+                Sword1.SetActive(false);
+            if (Sword2.activeInHierarchy == true)
+                Sword2.SetActive(false);
             if (Sword3.activeInHierarchy == false)
                 Sword3.SetActive(true);
             TransitionState(YasuoState_Enum.Attackstate3);
+            vcam3.SetActive(false);
+            vcam4.SetActive(true);
             _third = true;
         }
     }
@@ -177,6 +203,10 @@ public class YasuoControl : MonoBehaviour, IDamageable
         }
         else if (health < 900)
         {
+            if (Sword1.activeInHierarchy == true)
+                Sword1.SetActive(false);
+            if (Sword2.activeInHierarchy == true)
+                Sword2.SetActive(false);
             if (Sword3.activeInHierarchy == false)
                 Sword3.SetActive(true);
             TransitionState(YasuoState_Enum.Attackstate3);
@@ -366,7 +396,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
     IEnumerator Ground()
     {
         //白色
-        yield return new WaitForSeconds(0.18f);
+        yield return new WaitForSeconds(0.1f);
         GameObject groundattack1 = ObjectPool.Instance.GetObject(groundattack1prefeb);
         groundattack1.transform.position = new Vector2(transform.position.x - groundattackcount * 3.2f, groundPoint.position.y);
         GameObject groundattack1_2 = ObjectPool.Instance.GetObject(groundattack1prefeb);
@@ -377,7 +407,6 @@ public class YasuoControl : MonoBehaviour, IDamageable
         groundattack2.transform.position = new Vector2(transform.position.x - groundattackcount * 3.2f, groundPoint.position.y);
         GameObject groundattack2_2 = ObjectPool.Instance.GetObject(groundattack2prefeb);
         groundattack2_2.transform.position = new Vector2(transform.position.x + groundattackcount * 3.2f, groundPoint.position.y);
-
         GroundAttack();
         yield return null;
     }

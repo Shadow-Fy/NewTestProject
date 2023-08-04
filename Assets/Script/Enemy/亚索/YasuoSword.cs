@@ -58,7 +58,6 @@ public class YasuoSword : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, _target, speed * Time.deltaTime);
 
 
-
         ObjectPool.Instance.GetObject(_shadowprefab);
 
 
@@ -218,37 +217,49 @@ public class YasuoSword : MonoBehaviour
         switch (_attack2choose)
         {
             case 1:
-                _target = new Vector3(0, 0, 0) + _originPosition;
-                if (Vector3.Distance(transform.position, _target) < 0.1f)
+                _target = new Vector3(58.9f, -1, transform.position.z) + new Vector3(_originPosition.x * 3, 0, 0);
+                if (Vector2.Distance(transform.position, _target) < 0.1f)
                     _attack2choose = 2;
                 break;
             case 2:
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, -90), 2);
-                _canfire2 = true;//开始发射弹幕
-                if (GetInspectorRotationValueMethod(transform).z == -90)
-                    _attack2choose = 3;
+                
                 break;
-            case 3:
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, -50), 2);
-                if (GetInspectorRotationValueMethod(transform).z == -50)
-                    _attack2choose = 4;
-                break;
-            case 4:
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, 230), 2);
-                if (GetInspectorRotationValueMethod(transform).z == 230)
-                    _attack2choose = 5;
-                break;
-            case 5:
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, -50), 2);
-                if (GetInspectorRotationValueMethod(transform).z == -50)
-                {
-                    _attack2choose = 0;
-                    剑雨.Play();
-                    _canfire2 = false;
-                    _isattack_2 = false;
-                }
-                break;
+
         }
+        //switch (_attack2choose)
+        //{
+        //    case 1:
+        //        _target = new Vector3(58.9f, 0, transform.position.z) + _originPosition;
+        //        if (Vector2.Distance(transform.position, _target) < 0.1f)
+        //            _attack2choose = 2;
+        //        break;
+        //    case 2:
+        //        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, -90), 2);
+        //        _canfire2 = true;//开始发射弹幕
+        //        if (GetInspectorRotationValueMethod(transform).z == -90)
+        //            _attack2choose = 3;
+        //        break;
+        //    case 3:
+        //        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, -50), 2);
+        //        if (GetInspectorRotationValueMethod(transform).z == -50)
+        //            _attack2choose = 4;
+        //        break;
+        //    case 4:
+        //        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, 230), 2);
+        //        if (GetInspectorRotationValueMethod(transform).z == 230)
+        //            _attack2choose = 5;
+        //        break;
+        //    case 5:
+        //        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, -50), 2);
+        //        if (GetInspectorRotationValueMethod(transform).z == -50)
+        //        {
+        //            _attack2choose = 0;
+        //            剑雨.Play();
+        //            _canfire2 = false;
+        //            _isattack_2 = false;
+        //        }
+        //        break;
+        //}
 
     }
     public void Attack3()
@@ -256,10 +267,10 @@ public class YasuoSword : MonoBehaviour
         switch (_attack3choose)
         {
             case 1:
-                _target = new Vector3(_originPosition.x * 7, 50, 0);
+                _target = new Vector3(58.91055f + _originPosition.x * 6, 20, 0);
                 if (Vector3.Distance(transform.position, _target) < 0.1f)
                 {
-                    transform.localScale = new Vector3(7, 7);
+                    transform.localScale = new Vector3(-7, 7);
                     transform.rotation = Quaternion.Euler(0, 0, 90);
                     speed = 30;
                     _attack3choose = 2;
@@ -271,7 +282,7 @@ public class YasuoSword : MonoBehaviour
                 _target = new Vector3(_target.x, -50, 0);
                 if (Vector3.Distance(transform.position, _target) < 0.1f)
                 {
-                    transform.localScale = new Vector3(1, 1);
+                    transform.localScale = new Vector3(-1, 1);
                     _attack3choose = 0;
                     _isattack_3 = false;
                     coll.enabled = false;

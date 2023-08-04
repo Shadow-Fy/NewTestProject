@@ -11,7 +11,7 @@ public class Attackstate3 : YasuoBaseState
 
     public override void EnterState()
     {
-        Yasuo.transform.position = new Vector3(0, 15);
+        Yasuo.transform.position = new Vector3(58.910552f, 0);
         Yasuo.wing.SetActive(true);
         GameObject _wing = ObjectPool.Instance.GetObject(Yasuo.wingprefeb);
         _wing.transform.position = Yasuo.transform.position;
@@ -28,6 +28,6 @@ public class Attackstate3 : YasuoBaseState
 
     public void SixStarAttack()
     {
-        
+
     }
 }
