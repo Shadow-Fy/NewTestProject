@@ -2239,7 +2239,7 @@ RectTransform:
   m_Children:
   - {fileID: 16892839}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2810,7 +2810,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275388460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37.16, y: 15.1, z: 7.900002}
+  m_LocalPosition: {x: 37.16, y: 18.11, z: 7.900002}
   m_LocalScale: {x: -2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2938,7 +2938,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288048642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37.16, y: 15.1, z: 7.900002}
+  m_LocalPosition: {x: 37.16, y: 18.11, z: 7.900002}
   m_LocalScale: {x: -2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3838,25 +3838,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {x: 0, y: 0, z: 0}
   _originPosition: {x: 0, y: 3.03, z: 0}
+  tips: {fileID: 7696271763705972468, guid: 59c39937f5ccfcb46aedb342ce60c9e3, type: 3}
   _shadowprefab: {fileID: 3222638033931824159, guid: fa772d3b960262e4fa92f78b23e4f624, type: 3}
-  swordFire: {fileID: 6140314961075883971, guid: 94bf71c4183a8a64e81237b15678834a, type: 3}
+  swordFire: {fileID: 6140314961075883971, guid: 558884eab3940384599fc56381ea90d7, type: 3}
   midPoint: {fileID: 970246075}
   rightPoint: {fileID: 768250200}
   lineAttackCount: 1
+  lineAttackCD: 0.1
   swordnum:
-  - {fileID: 177369505}
-  - {fileID: 1810012483}
-  - {fileID: 361522377}
-  - {fileID: 952571550}
-  - {fileID: 1354114282}
-  - {fileID: 745168708}
-  - {fileID: 1316774732}
-  - {fileID: 1431812547}
-  - {fileID: 1695753837}
-  - {fileID: 628679062}
-  - {fileID: 166873157}
-  - {fileID: 1837875179}
   - {fileID: 9803363}
+  - {fileID: 1837875179}
+  - {fileID: 166873157}
+  - {fileID: 628679062}
+  - {fileID: 1695753837}
+  - {fileID: 1431812547}
+  - {fileID: 1316774732}
+  - {fileID: 745168708}
+  - {fileID: 1354114282}
+  - {fileID: 952571550}
+  - {fileID: 361522377}
+  - {fileID: 1810012483}
+  - {fileID: 177369505}
   - {fileID: 1965172728}
   - {fileID: 1083683171}
   - {fileID: 6422972}
@@ -31462,7 +31464,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1391042880
 GameObject:
@@ -37198,37 +37200,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 82.96, y: 44.62}
   m_EdgeRadius: 0
---- !u!1 &1493835797
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1493835798}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1493835798
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493835797}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 48.196865, y: -15.676323, z: 1394.1328}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1502477885
 GameObject:
   m_ObjectHideFlags: 0
@@ -50004,7 +49975,7 @@ MonoBehaviour:
   _target: {x: 0, y: 0, z: 0}
   _originPosition: {x: 3.049999, y: 1.57, z: 0}
   _shadowprefab: {fileID: 3222638033931824159, guid: 6bb6a3269a3100646ba2d4a5db811051, type: 3}
-  _yasuoSwordFire: {fileID: 6140314961075883971, guid: 558884eab3940384599fc56381ea90d7, type: 3}
+  _yasuoSwordFire: {fileID: 6140314961075883971, guid: 94bf71c4183a8a64e81237b15678834a, type: 3}
   "\u5251\u96E8": {fileID: 1946314588}
   _isattack_3: 0
 --- !u!212 &1923744953
