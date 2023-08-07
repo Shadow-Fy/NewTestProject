@@ -22,23 +22,38 @@ public class YasuoSword2 : MonoBehaviour
     [Space]
     private Vector3 _currentposition;
     private Vector3 单位向量;
-    public int lineAttackCount;
-    public float lineAttackCD;
+    private int lineAttackCount = 1;
+    public float rowAttackCD;
     private float lineAttacktime;
     private bool lineAttackBool = false;
     public GameObject[] swordnum;
-    public Vector3[] originPos;
+    private Vector3[] originPos = new Vector3[26];
     private int _count;
+
+    public GameObject[] RotateSwordnum1;
+    public GameObject[] RotateSwordnum2;
+    private int rotateAttackCount = 1;
+    private bool rotateAttackBool;
+    private float rotateSpeed = 10;
+    private Vector2[] targetpos1 = new Vector2[9];
+    private Vector2[] targetpos2 = new Vector2[9];
+
+    public GameObject redLine1;
+    public GameObject redLine2;
+    private float lineTime;
+    public float lineCD;
+
 
 
 
     private void Start()
     {
+        lineTime = lineCD;
         coll = GetComponent<CapsuleCollider2D>();
         _boxcoll = GetComponent<BoxCollider2D>();
         _playertr = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         _fatherTransform = transform.parent.GetChild(0).GetComponent<Transform>();
-        lineAttacktime = lineAttackCD;
+        lineAttacktime = rowAttackCD;
         coll.enabled = false;
         _boxcoll.enabled = false;
 
@@ -53,12 +68,16 @@ public class YasuoSword2 : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            lineAttackBool = true;
+            rotateAttackBool = true;
         }
 
         if (lineAttackBool)
         {
             lineAttack();
+        }
+        if (rotateAttackBool)
+        {
+            RotateAttack();
         }
     }
 
@@ -103,20 +122,20 @@ public class YasuoSword2 : MonoBehaviour
                 if (lineAttacktime <= 0 && _count == -1)
                 {
                     GameObject tip = ObjectPool.Instance.GetObject(tips);
-                    tip.transform.position = transform.position + new Vector3(0,3);
+                    tip.transform.position = transform.position + new Vector3(0, 3);
                     GameObject sword = ObjectPool.Instance.GetObject(swordFire);
                     sword.transform.position = transform.position;
-                    lineAttacktime = lineAttackCD;
+                    lineAttacktime = rowAttackCD;
                     _count = 13;
                 }
 
                 if (lineAttacktime <= 0)
                 {
                     GameObject tip = ObjectPool.Instance.GetObject(tips);
-                    tip.transform.position = swordnum[_count].transform.position + new Vector3(0,3);
+                    tip.transform.position = swordnum[_count].transform.position + new Vector3(0, 3);
                     GameObject sword = ObjectPool.Instance.GetObject(swordFire);
                     sword.transform.position = swordnum[_count].transform.position;
-                    lineAttacktime = lineAttackCD;
+                    lineAttacktime = rowAttackCD;
                     if (_count == 12)
                         _count = -1;
                     else
@@ -135,20 +154,20 @@ public class YasuoSword2 : MonoBehaviour
                 if (lineAttacktime <= 0 && _count == -1)
                 {
                     GameObject tip = ObjectPool.Instance.GetObject(tips);
-                    tip.transform.position = transform.position + new Vector3(0,3);
+                    tip.transform.position = transform.position + new Vector3(0, 3);
                     GameObject sword = ObjectPool.Instance.GetObject(swordFire);
                     sword.transform.position = transform.position;
-                    lineAttacktime = lineAttackCD;
+                    lineAttacktime = rowAttackCD;
                     _count = 12;
                 }
 
                 if (lineAttacktime <= 0)
                 {
                     GameObject tip = ObjectPool.Instance.GetObject(tips);
-                    tip.transform.position = swordnum[_count].transform.position + new Vector3(0,3);
+                    tip.transform.position = swordnum[_count].transform.position + new Vector3(0, 3);
                     GameObject sword = ObjectPool.Instance.GetObject(swordFire);
                     sword.transform.position = swordnum[_count].transform.position;
-                    lineAttacktime = lineAttackCD;
+                    lineAttacktime = rowAttackCD;
                     if (_count == 13)
                         _count = -1;
                     else
@@ -176,7 +195,7 @@ public class YasuoSword2 : MonoBehaviour
                             swordnum[i].SetActive(false);
                         }
                         lineAttackCount = 1;
-                        lineAttacktime = lineAttackCD;
+                        lineAttacktime = rowAttackCD;
                         lineAttackBool = false;
                     }
                 }
@@ -185,6 +204,135 @@ public class YasuoSword2 : MonoBehaviour
     }
 
 
+    private void RotateAttack()
+    {
+        Debug.Log(rotateAttackCount);
+        switch (rotateAttackCount)
+        {
+            case 1: //飞剑3旋转
+                transform.Rotate(Vector3.forward * rotateSpeed);
+                if (rotateSpeed < 30)
+                    rotateSpeed += Time.deltaTime * 6;
+                else
+                {
+                    _target = midPoint.position + new Vector3(0, 10, 0);
+                    rotateAttackCount = 2;
+                }
+                break;
+            case 2: //飞剑3上升
+                transform.Rotate(Vector3.forward * speed);
+                transform.position = Vector2.MoveTowards(transform.position, _target, 30 * Time.deltaTime);
+                if (Vector2.Distance(transform.position, _target) < 0.1f)
+                {
+                    rotateAttackCount = 3;
+                }
+                break;
+            case 3: //启动旋转剑
+                for (int i = 0; i < RotateSwordnum1.Length; i++)
+                {
+                    RotateSwordnum1[i].transform.position = new Vector3(89.7f - i * 8, 12.5f);
+                    RotateSwordnum1[i].SetActive(true);
+                    targetpos1[i] = new Vector2(RotateSwordnum1[i].transform.position.x - 8, -25);
+                    if (i == 8)
+                    {
+                        rotateAttackCount = 4;
+                    }
+                }
+                break;
+            case 4: //线闪烁
+                lineTime -= Time.deltaTime;
+                if (lineTime <= 0)
+                {
+                    redLine1.SetActive(true);
+
+                }
+                if (lineTime <= lineCD * -2)
+                {
+                    redLine1.SetActive(false);
+                    lineTime = lineCD;
+                    rotateAttackCount = 5;
+                }
+                break;
+            case 5:
+                lineTime -= Time.deltaTime;
+                if (lineTime <= 0)
+                {
+                    redLine1.SetActive(true);
+                }
+                if (lineTime <= lineCD * -2)
+                {
+                    redLine1.SetActive(false);
+                    lineTime = lineCD;
+                    rotateAttackCount = 6;
+                }
+                break;
+            case 6: //旋转剑移动
+                for (int i = 0; i < RotateSwordnum1.Length; i++)
+                {
+                    RotateSwordnum1[i].transform.position = Vector2.MoveTowards(RotateSwordnum1[i].transform.position, targetpos1[i], 70 * Time.deltaTime);
+                }
+                if (Vector2.Distance(RotateSwordnum1[0].transform.position, targetpos1[0]) < 0.1f)
+                {
+                    for (int i = 0; i < RotateSwordnum1.Length; i++)
+                    {
+                        RotateSwordnum1[i].SetActive(false);
+                    }
+                    rotateAttackCount = 7;
+                }
+                break;
+            case 7: //线闪烁
+                lineTime -= Time.deltaTime;
+                if (lineTime <= 0)
+                {
+                    redLine2.SetActive(true);
+
+                }
+                if (lineTime <= lineCD * -2)
+                {
+                    redLine2.SetActive(false);
+                    lineTime = lineCD;
+                    rotateAttackCount = 8;
+                }
+                break;
+            case 8:
+                lineTime -= Time.deltaTime;
+                if (lineTime <= 0)
+                {
+                    redLine2.SetActive(true);
+                }
+                if (lineTime <= lineCD * -2)
+                {
+                    redLine2.SetActive(false);
+                    lineTime = lineCD;
+                    for (int i = 0; i < RotateSwordnum2.Length; i++)
+                    {
+                        RotateSwordnum2[i].transform.position = new Vector3(83.7f - i * 8, 12.5f);
+                        RotateSwordnum2[i].SetActive(true);
+                        targetpos2[i] = new Vector2(RotateSwordnum2[i].transform.position.x + 8, -26.5f);
+                        if (i == 8)
+                        {
+                            rotateAttackCount = 9;
+                        }
+                    }
+                }
+                break;
+            case 9:
+                for (int i = 0; i < RotateSwordnum2.Length; i++)
+                {
+                    RotateSwordnum2[i].transform.position = Vector2.MoveTowards(RotateSwordnum2[i].transform.position, targetpos2[i], 70 * Time.deltaTime);
+                }
+                if (Vector2.Distance(RotateSwordnum2[0].transform.position, targetpos2[0]) < 0.1f)
+                {
+                    for (int i = 0; i < RotateSwordnum2.Length; i++)
+                    {
+                        RotateSwordnum2[i].SetActive(false);
+                    }
+                    rotateAttackCount = 1;
+                    rotateAttackBool = false;
+                }
+                break;
+        }
+    }
     public Vector3 GetInspectorRotationValueMethod(Transform transform)
     {
         // 获取原生值
