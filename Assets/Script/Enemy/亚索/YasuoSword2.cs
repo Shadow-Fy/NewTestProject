@@ -32,14 +32,20 @@ public class YasuoSword2 : MonoBehaviour
 
     public GameObject[] RotateSwordnum1;
     public GameObject[] RotateSwordnum2;
+    public GameObject[] RotateSwordnum3;
+    public GameObject[] RotateSwordnum4;
     private int rotateAttackCount = 1;
     private bool rotateAttackBool;
     private float rotateSpeed = 10;
     private Vector2[] targetpos1 = new Vector2[9];
     private Vector2[] targetpos2 = new Vector2[9];
+    private Vector2[] targetpos3 = new Vector2[4];
+    private Vector2[] targetpos4 = new Vector2[4];
 
     public GameObject redLine1;
     public GameObject redLine2;
+    public GameObject redLine3;
+    public GameObject redLine4;
     private float lineTime;
     public float lineCD;
 
@@ -233,7 +239,7 @@ public class YasuoSword2 : MonoBehaviour
                     RotateSwordnum1[i].transform.position = new Vector3(89.7f - i * 8, 12.5f);
                     RotateSwordnum1[i].SetActive(true);
                     targetpos1[i] = new Vector2(RotateSwordnum1[i].transform.position.x - 8, -25);
-                    if (i == 8)
+                    if (i == RotateSwordnum1.Length - 1)
                     {
                         rotateAttackCount = 4;
                     }
@@ -309,7 +315,7 @@ public class YasuoSword2 : MonoBehaviour
                         RotateSwordnum2[i].transform.position = new Vector3(83.7f - i * 8, 12.5f);
                         RotateSwordnum2[i].SetActive(true);
                         targetpos2[i] = new Vector2(RotateSwordnum2[i].transform.position.x + 8, -26.5f);
-                        if (i == 8)
+                        if (i == RotateSwordnum2.Length - 1)
                         {
                             rotateAttackCount = 9;
                         }
@@ -326,6 +332,106 @@ public class YasuoSword2 : MonoBehaviour
                     for (int i = 0; i < RotateSwordnum2.Length; i++)
                     {
                         RotateSwordnum2[i].SetActive(false);
+                    }
+                    rotateAttackCount = 10;
+                }
+                break;
+            case 10:
+                lineTime -= Time.deltaTime;
+                if (lineTime <= 0)
+                {
+                    redLine3.SetActive(true);
+
+                }
+                if (lineTime <= lineCD * -2)
+                {
+                    redLine3.SetActive(false);
+                    lineTime = lineCD;
+                    rotateAttackCount = 11;
+                }
+                break;
+            case 11:
+                lineTime -= Time.deltaTime;
+                if (lineTime <= 0)
+                {
+                    redLine3.SetActive(true);
+                }
+                if (lineTime <= lineCD * -2)
+                {
+                    redLine3.SetActive(false);
+                    lineTime = lineCD;
+                    for (int i = 0; i < RotateSwordnum3.Length; i++)
+                    {
+                        RotateSwordnum3[i].transform.position = new Vector3(25, 6 - i * 8);
+                        RotateSwordnum3[i].SetActive(true);
+                        targetpos3[i] = new Vector2(94, RotateSwordnum3[i].transform.position.y);
+                        if (i == RotateSwordnum3.Length - 1)
+                        {
+                            rotateAttackCount = 12;
+                        }
+                    }
+                }
+                break;
+            case 12:
+                for (int i = 0; i < RotateSwordnum3.Length; i++)
+                {
+                    RotateSwordnum3[i].transform.position = Vector2.MoveTowards(RotateSwordnum3[i].transform.position, targetpos3[i], 70 * Time.deltaTime);
+                }
+                if (Vector2.Distance(RotateSwordnum3[0].transform.position, targetpos3[0]) < 0.1f)
+                {
+                    for (int i = 0; i < RotateSwordnum3.Length; i++)
+                    {
+                        RotateSwordnum3[i].SetActive(false);
+                    }
+                    rotateAttackCount = 13;
+                }
+                break;
+            case 13:
+                lineTime -= Time.deltaTime;
+                if (lineTime <= 0)
+                {
+                    redLine4.SetActive(true);
+
+                }
+                if (lineTime <= lineCD * -2)
+                {
+                    redLine4.SetActive(false);
+                    lineTime = lineCD;
+                    rotateAttackCount = 14;
+                }
+                break;
+            case 14:
+                lineTime -= Time.deltaTime;
+                if (lineTime <= 0)
+                {
+                    redLine4.SetActive(true);
+                }
+                if (lineTime <= lineCD * -2)
+                {
+                    redLine4.SetActive(false);
+                    lineTime = lineCD;
+                    for (int i = 0; i < RotateSwordnum4.Length; i++)
+                    {
+                        RotateSwordnum4[i].transform.position = new Vector3(94, 2 - i * 8);
+                        RotateSwordnum4[i].SetActive(true);
+                        targetpos4[i] = new Vector2(25, RotateSwordnum4[i].transform.position.y);
+                        if (i == RotateSwordnum4.Length - 1)
+                        {
+                            rotateAttackCount = 15;
+                        }
+                    }
+                }
+                break;
+            case 15:
+                for (int i = 0; i < RotateSwordnum4.Length; i++)
+                {
+                    RotateSwordnum4[i].transform.position = Vector2.MoveTowards(RotateSwordnum4[i].transform.position, targetpos4[i], 70 * Time.deltaTime);
+                }
+                if (Vector2.Distance(RotateSwordnum4[0].transform.position, targetpos4[0]) < 0.1f)
+                {
+                    for (int i = 0; i < RotateSwordnum4.Length; i++)
+                    {
+                        RotateSwordnum4[i].SetActive(false);
                     }
                     rotateAttackCount = 1;
                     rotateAttackBool = false;
