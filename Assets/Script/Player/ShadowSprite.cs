@@ -19,7 +19,7 @@ public class ShadowSprite : MonoBehaviour
     public float alphaMultiplier;
     private float alpha;
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         thisSprite = GetComponent<SpriteRenderer>();
@@ -35,7 +35,7 @@ public class ShadowSprite : MonoBehaviour
         activeStart = Time.time;
     }
 
-    private void Update()
+    protected void Update()
     {
         alpha *= alphaMultiplier;
 
@@ -47,6 +47,9 @@ public class ShadowSprite : MonoBehaviour
         {
             ObjectPool.Instance.PushObject(this.gameObject);
         }
+    }
 
+    public void Init(Transform transform, SpriteRenderer spriteRenderer){
+        
     }
 }
