@@ -4,7 +4,7 @@ using UnityEngine;
 using Assassin_Cultist_State;
 
 
-public class Boss : MonoBehaviour   //, IDamageable, GameOverReset
+public class Boss : MonoBehaviour, IDamageable, GameOverReset
 {
     [Header("Component")]
     [HideInInspector]public Animator anim;
@@ -73,7 +73,7 @@ public class Boss : MonoBehaviour   //, IDamageable, GameOverReset
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         coll = GetComponent<Collider2D>();
-        // characterStats = GetComponent<CharacterStats>();
+        characterStats = GetComponent<CharacterStats>();
     }
 
     public void InitData()  //某些参数的初始化
@@ -109,7 +109,7 @@ public class Boss : MonoBehaviour   //, IDamageable, GameOverReset
         if(target != null)
         {
             //追踪目标
-            // transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x, transform.position.y), characterStats.CurrentSpeed * Time.deltaTime * speedMultiple);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x, transform.position.y), characterStats.CurrentSpeed * Time.deltaTime * speedMultiple);
         }
         TurnAround();
     }
@@ -130,7 +130,7 @@ public class Boss : MonoBehaviour   //, IDamageable, GameOverReset
         lastAttack = Time.time;
     }
 
-    #region Tools Function
+#region Tools Function
 
     public void TransitionState(ParentStateMachine state)//切换状态类的函数
     {
@@ -258,6 +258,28 @@ public class Boss : MonoBehaviour   //, IDamageable, GameOverReset
         }
     }
 
-    #endregion
+    public void GetHit(float damage){
+        Debug.Log("Test");
+        if(!anim.GetCurrentAnimatorStateInfo(2).IsName("GetHit"))
+        {
+            characterStats.characterData.currentHealth -= (int)damage;
+            if(characterStats.CurrentHealth <= 0)
+            {
+                isDead = true;
+
+                if(enemies.Contains(_enemy))
+                {
+                    enemies.Remove(_enemy);
+                }
+
+                // if(QuestManager.IsInitialized)
+                // {
+                //     QuestManager.Instance.UpdateQuestProgress(transform.parent.name, 1);
+                // }
+            }
+        }
+    }
+
+#endregion
 
 }

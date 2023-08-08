@@ -24,7 +24,7 @@ public class AssassinCultist : Boss
         {
             ShadowSprite shadowSprite = null;//ObjectPool.Instance.GetObjectButNoSetActive(shadow).GetComponent<ShadowSprite>();
             shadowSprite.Init(transform, spriteRenderer);
-            shadowSprite.gameObject.SetActive(true);
+            // shadowSprite.gameObject.SetActive(true);
         }
     }
 

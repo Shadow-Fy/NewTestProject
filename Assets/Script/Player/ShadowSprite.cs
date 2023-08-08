@@ -49,6 +49,8 @@ public class ShadowSprite : MonoBehaviour
         }
     }
 
+    //TODO：往后可以优化ShadowSprite，使得所有角色都可以使用
+    //MMMMrD添加：忍者脚本需要
     public void Init(Transform transform, SpriteRenderer spriteRenderer){
         
     }

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa717b729b6a6d438c47a3ddd027497, type: 3}
   m_Name: Assassin Cultist Data
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  currentHealth: 0
-  baseSpeed: 0
-  currentSpeed: 0
-  baseJumpForce: 0
-  currentJumpForce: 0
+  maxHealth: 100
+  currentHealth: 100
+  baseSpeed: 5
+  currentSpeed: 5
+  baseJumpForce: 2
+  currentJumpForce: 2
   maxExp: 0
   currentExp: 0
   killExp: 0

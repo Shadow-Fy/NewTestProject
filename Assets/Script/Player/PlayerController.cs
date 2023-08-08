@@ -57,6 +57,11 @@ public class PlayerController : MonoBehaviour, IDamageable
         currenthealth = maxhealth;
     }
 
+    public virtual void Start(){
+        //MMMMrDÐÞ¸Ä£ºÏòGameManager×¢²á
+        GameManager.Instance.RegisterPlayer(this);
+    }
+
     public virtual void Update()
     {
         horizontalmove_float = Input.GetAxis("Horizontal");
