@@ -5,7 +5,7 @@ using UnityEngine;
 public class YasuoSwordFire : MonoBehaviour
 {
 
-    private float lifetime = 3;
+    private float lifetime = 2;
 
 
     // private Aim aim;
@@ -25,11 +25,11 @@ public class YasuoSwordFire : MonoBehaviour
     {
         lifetime -= Time.deltaTime;
 
-        transform.position +=  -transform.right;
+        transform.position += transform.right * 0.6f;
         if (lifetime <= 0)
         {
             ObjectPool.Instance.PushObject(gameObject);
-            lifetime = 3;
+            lifetime = 2;
         }
     }
 

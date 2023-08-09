@@ -7,7 +7,7 @@ namespace Clock{
     public class TimeUI : MonoBehaviour
     {
         public TMP_Text text;
-        private void FixedUpdate() {
+        protected void FixedUpdate() {
             text.text = System.TimeSpan.FromSeconds(Clock.Instance.ClearTime).ToString(@"mm\:ss\:ff");
         }
 
