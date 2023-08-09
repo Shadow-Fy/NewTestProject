@@ -18,10 +18,10 @@ public class CharacterStats : MonoBehaviour
             characterData = Instantiate(tampletData);
         }
 
-        // if(tampletAttackData != null)
-        // {
-        //     attackData = Instantiate(tampletAttackData);
-        // }
+        if(tampletAttackData != null)
+        {
+            attackData = Instantiate(tampletAttackData);
+        }
     }
 
     #region get Info form CharacterData_So

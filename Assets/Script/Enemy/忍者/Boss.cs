@@ -60,6 +60,8 @@ public class Boss : MonoBehaviour, IDamageable, GameOverReset
     [HideInInspector]public List<GameObject> enemies;
     [HideInInspector]public GameObject _enemy;
 
+    private IDamageable[] childDamageableList;
+
     public virtual void Start()
     {
         //初始化
@@ -74,6 +76,12 @@ public class Boss : MonoBehaviour, IDamageable, GameOverReset
         anim = GetComponent<Animator>();
         coll = GetComponent<Collider2D>();
         characterStats = GetComponent<CharacterStats>();
+
+        childDamageableList = GetComponentsInChildren<IDamageable>();
+        foreach(var childDamageable in childDamageableList){
+            if(childDamageable != (IDamageable)this)
+                Debug.Log(childDamageable);
+        }
     }
 
     public void InitData()  //某些参数的初始化
@@ -259,10 +267,15 @@ public class Boss : MonoBehaviour, IDamageable, GameOverReset
     }
 
     public void GetHit(float damage){
-        Debug.Log("Test");
         if(!anim.GetCurrentAnimatorStateInfo(2).IsName("GetHit"))
         {
             characterStats.characterData.currentHealth -= (int)damage;
+
+            foreach(var childDamageable in childDamageableList){
+                if(childDamageable != (IDamageable)this)
+                    childDamageable.GetHit(damage);
+            }
+
             if(characterStats.CurrentHealth <= 0)
             {
                 isDead = true;
