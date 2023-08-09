@@ -19,17 +19,19 @@ namespace Clock
             DontDestroyOnLoad(this);
         }
 
-        private void Start() {
+        protected void Start() {
             // action += Timing;    
         }
 
-        void FixedUpdate(){
+        protected void FixedUpdate(){
             action?.Invoke();
         }
 
         //计时开始
         public void StartTiming(){
-            action += Timing;
+            if(action == null){
+                action += Timing;
+            }
         }
         
         //计时结束
