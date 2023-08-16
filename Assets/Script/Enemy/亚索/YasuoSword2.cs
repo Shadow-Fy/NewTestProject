@@ -17,7 +17,6 @@ public class YasuoSword2 : MonoBehaviour
     public GameObject swordFire;
     private Transform _fatherTransform;
     public Transform midPoint;
-    public Transform rightPoint;
 
     [Space]
     private Vector3 _currentposition;
@@ -34,6 +33,7 @@ public class YasuoSword2 : MonoBehaviour
     public GameObject[] RotateSwordnum2;
     public GameObject[] RotateSwordnum3;
     public GameObject[] RotateSwordnum4;
+    public GameObject[] RotateSwordnum5;
     private int rotateAttackCount = 1;
     private bool rotateAttackBool;
     private float rotateSpeed = 10;
@@ -41,11 +41,13 @@ public class YasuoSword2 : MonoBehaviour
     private Vector2[] targetpos2 = new Vector2[9];
     private Vector2[] targetpos3 = new Vector2[4];
     private Vector2[] targetpos4 = new Vector2[4];
+    private Vector2 targetpos5;
 
     public GameObject redLine1;
     public GameObject redLine2;
     public GameObject redLine3;
     public GameObject redLine4;
+    public GameObject redLine5;
     private float lineTime;
     public float lineCD;
 
@@ -221,7 +223,7 @@ public class YasuoSword2 : MonoBehaviour
                     rotateSpeed += Time.deltaTime * 6;
                 else
                 {
-                    _target = midPoint.position + new Vector3(0, 10, 0);
+                    _target = midPoint.position + new Vector3(0, 11, 0);
                     rotateAttackCount = 2;
                 }
                 break;
@@ -314,7 +316,7 @@ public class YasuoSword2 : MonoBehaviour
                     {
                         RotateSwordnum2[i].transform.position = new Vector3(83.7f - i * 8, 12.5f);
                         RotateSwordnum2[i].SetActive(true);
-                        targetpos2[i] = new Vector2(RotateSwordnum2[i].transform.position.x + 8, -26.5f);
+                        targetpos2[i] = new Vector2(RotateSwordnum2[i].transform.position.x + 13, -26.5f);
                         if (i == RotateSwordnum2.Length - 1)
                         {
                             rotateAttackCount = 9;
@@ -375,7 +377,7 @@ public class YasuoSword2 : MonoBehaviour
             case 12:
                 for (int i = 0; i < RotateSwordnum3.Length; i++)
                 {
-                    RotateSwordnum3[i].transform.position = Vector2.MoveTowards(RotateSwordnum3[i].transform.position, targetpos3[i], 70 * Time.deltaTime);
+                    RotateSwordnum3[i].transform.position = Vector2.MoveTowards(RotateSwordnum3[i].transform.position, targetpos3[i], 90 * Time.deltaTime);
                 }
                 if (Vector2.Distance(RotateSwordnum3[0].transform.position, targetpos3[0]) < 0.1f)
                 {
@@ -425,7 +427,7 @@ public class YasuoSword2 : MonoBehaviour
             case 15:
                 for (int i = 0; i < RotateSwordnum4.Length; i++)
                 {
-                    RotateSwordnum4[i].transform.position = Vector2.MoveTowards(RotateSwordnum4[i].transform.position, targetpos4[i], 70 * Time.deltaTime);
+                    RotateSwordnum4[i].transform.position = Vector2.MoveTowards(RotateSwordnum4[i].transform.position, targetpos4[i], 90 * Time.deltaTime);
                 }
                 if (Vector2.Distance(RotateSwordnum4[0].transform.position, targetpos4[0]) < 0.1f)
                 {
@@ -433,29 +435,97 @@ public class YasuoSword2 : MonoBehaviour
                     {
                         RotateSwordnum4[i].SetActive(false);
                     }
+                    rotateAttackCount = 16;
+                    _target = midPoint.position + new Vector3(1, -8, 0);
+                    transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+                    //rotateAttackBool = false;
+                }
+                break;
+            case 16:
+                transform.position = Vector2.MoveTowards(transform.position, _target, 30 * Time.deltaTime);
+                if (Vector2.Distance(transform.position, _target) < 0.1f)
+                {
+                    rotateAttackCount = 17;
+                }
+                break;
+            case 17:
+                lineTime -= Time.deltaTime;
+                if (lineTime <= 0)
+                {
+                    redLine5.SetActive(true);
+
+                }
+                if (lineTime <= lineCD * -2)
+                {
+                    redLine5.SetActive(false);
+                    lineTime = lineCD;
+                    rotateAttackCount = 18;
+                }
+                break;
+            case 18:
+                lineTime -= Time.deltaTime;
+                if (lineTime <= 0)
+                {
+                    redLine5.SetActive(true);
+                }
+                if (lineTime <= lineCD * -2)
+                {
+                    redLine5.SetActive(false);
+                    lineTime = lineCD;
+                    for (int i = 0; i < RotateSwordnum5.Length; i++)
+                    {
+                        RotateSwordnum5[i].SetActive(true);
+                        if (i == RotateSwordnum5.Length - 1)
+                        {
+                            targetpos5 = midPoint.position + new Vector3(1, -8, 0);
+                            rotateAttackCount = 19;
+                        }
+                    }
+                }
+                break;
+            case 19:
+                for (int i = 0; i < RotateSwordnum5.Length; i++)
+                {
+                    RotateSwordnum5[i].transform.position = Vector2.MoveTowards(RotateSwordnum5[i].transform.position, targetpos5, 70 * Time.deltaTime);
+                    if (Vector2.Distance(RotateSwordnum5[i].transform.position, targetpos5) < 0.1f)
+                    {
+                        RotateSwordnum5[i].SetActive(false);
+                    }
+                }
+                if (Vector2.Distance(RotateSwordnum5[RotateSwordnum5.Length - 1].transform.position, targetpos5) < 0.1f)
+                {
+
+                    _target = midPoint.transform.position + new Vector3(0, 14, 0);
+                    rotateAttackCount = 20;
+                }
+                break;
+            case 20:
+                transform.position = Vector2.MoveTowards(transform.position, _target, 30 * Time.deltaTime);
+                if (Vector2.Distance(transform.position, _target) < 0.1f)
+                {
+                    transform.localScale = new Vector3(-10, 10, 1);
+                    _target = _target = midPoint.transform.position + new Vector3(0, -30, 0);
+                    rotateAttackCount = 21;
+                }
+                break;
+            case 21:
+                transform.position = Vector2.MoveTowards(transform.position, _target, 30 * Time.deltaTime);
+                if (Vector2.Distance(transform.position, _target) < 0.1f)
+                {
+                    transform.localScale = new Vector3(-2, 2, 1);
                     rotateAttackCount = 1;
                     rotateAttackBool = false;
                 }
                 break;
         }
     }
-    public Vector3 GetInspectorRotationValueMethod(Transform transform)
+
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        // 获取原生值
-        System.Type transformType = transform.GetType();
-        PropertyInfo m_propertyInfo_rotationOrder = transformType.GetProperty("rotationOrder", BindingFlags.Instance | BindingFlags.NonPublic);
-        object m_OldRotationOrder = m_propertyInfo_rotationOrder.GetValue(transform, null);
-        MethodInfo m_methodInfo_GetLocalEulerAngles = transformType.GetMethod("GetLocalEulerAngles", BindingFlags.Instance | BindingFlags.NonPublic);
-        object value = m_methodInfo_GetLocalEulerAngles.Invoke(transform, new object[] { m_OldRotationOrder });
-        string temp = value.ToString();
-        //将字符串第一个和最后一个去掉
-        temp = temp.Remove(0, 1);
-        temp = temp.Remove(temp.Length - 1, 1);
-        //用‘，’号分割
-        string[] tempVector3;
-        tempVector3 = temp.Split(',');
-        //将分割好的数据传给Vector3
-        Vector3 vector3 = new Vector3(float.Parse(tempVector3[0]), float.Parse(tempVector3[1]), float.Parse(tempVector3[2]));
-        return vector3;
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<IDamageable>().GetHit(50);
+        }
     }
 }
