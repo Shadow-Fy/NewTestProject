@@ -24,7 +24,7 @@ public class YasuoSword2 : MonoBehaviour
     private int lineAttackCount = 1;
     public float rowAttackCD;
     private float lineAttacktime;
-    private bool lineAttackBool = false;
+    public bool lineAttackBool = false;
     public GameObject[] swordnum;
     private Vector3[] originPos = new Vector3[26];
     private int _count;
@@ -35,7 +35,7 @@ public class YasuoSword2 : MonoBehaviour
     public GameObject[] RotateSwordnum4;
     public GameObject[] RotateSwordnum5;
     private int rotateAttackCount = 1;
-    private bool rotateAttackBool;
+    public bool rotateAttackBool;
     private float rotateSpeed = 10;
     private Vector2[] targetpos1 = new Vector2[9];
     private Vector2[] targetpos2 = new Vector2[9];
@@ -64,29 +64,26 @@ public class YasuoSword2 : MonoBehaviour
         lineAttacktime = rowAttackCD;
         coll.enabled = false;
         _boxcoll.enabled = false;
+        lineAttackBool = false;
+        rotateAttackBool = false;
 
     }
 
     // Update is called once per frame
     void Update()
     {
+
         单位向量 = (transform.position - _playertr.position).normalized;
 
         ObjectPool.Instance.GetObject(_shadowprefab);
 
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            rotateAttackBool = true;
-        }
 
         if (lineAttackBool)
-        {
             lineAttack();
-        }
+
         if (rotateAttackBool)
-        {
             RotateAttack();
-        }
+
     }
 
     private void lineAttack()
@@ -204,6 +201,7 @@ public class YasuoSword2 : MonoBehaviour
                         }
                         lineAttackCount = 1;
                         lineAttacktime = rowAttackCD;
+                        rotateAttackBool = true;
                         lineAttackBool = false;
                     }
                 }
@@ -214,7 +212,6 @@ public class YasuoSword2 : MonoBehaviour
 
     private void RotateAttack()
     {
-        Debug.Log(rotateAttackCount);
         switch (rotateAttackCount)
         {
             case 1: //飞剑3旋转
@@ -438,7 +435,6 @@ public class YasuoSword2 : MonoBehaviour
                     rotateAttackCount = 16;
                     _target = midPoint.position + new Vector3(1, -8, 0);
                     transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
-                    //rotateAttackBool = false;
                 }
                 break;
             case 16:
@@ -515,6 +511,7 @@ public class YasuoSword2 : MonoBehaviour
                     transform.localScale = new Vector3(-2, 2, 1);
                     rotateAttackCount = 1;
                     rotateAttackBool = false;
+
                 }
                 break;
         }

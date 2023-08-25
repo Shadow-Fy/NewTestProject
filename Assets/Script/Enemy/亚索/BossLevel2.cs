@@ -25,7 +25,7 @@ public class BossLevel2 : MonoBehaviour
     }
     public void TimeLinePlay()
     {
-        bar.SetActive(false);
+        //bar.SetActive(false);
         yasuoControl.canhurt = false;
         yasuoControl.enabled = false;
         director.Play();
@@ -36,7 +36,7 @@ public class BossLevel2 : MonoBehaviour
 
     public void StartBoss(PlayableDirector obj)
     {
-        bar.SetActive(true);
+        //bar.SetActive(true);
         yasuoControl.enabled = true;
         yasuoControl.canhurt = true;
         boundaryLeft1.SetActive(false);

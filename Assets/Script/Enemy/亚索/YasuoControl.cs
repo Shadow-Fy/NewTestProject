@@ -26,10 +26,9 @@ public class YasuoControl : MonoBehaviour, IDamageable
 
     [Space]
     [Header("三阶段使用的物品")]
+    public GameObject magicCircle;
     private bool startlevel3;
     public BossLevel3 bossLevel3;
-    public GameObject circle;//保护罩
-    public GameObject levelfire;
     public GameObject groundattack1prefeb;
     public GameObject groundattack2prefeb;
 
@@ -149,6 +148,9 @@ public class YasuoControl : MonoBehaviour, IDamageable
         {
             if (startlevel3)
             {
+                transform.position = new Vector3((flyPointLeftUp.position.x + flyPointRightDown.position.x) / 2 + 1, (flyPointLeftUp.position.y + flyPointRightDown.position.y) / 2 + 4);
+                magicCircle.SetActive(true);
+                _Rb.bodyType = RigidbodyType2D.Static;
                 bossLevel3.TimeLinePlay();
                 startlevel3 = false;
             }
@@ -156,8 +158,6 @@ public class YasuoControl : MonoBehaviour, IDamageable
                 Sword1.SetActive(false);
             if (Sword2.activeInHierarchy == true)
                 Sword2.SetActive(false);
-            if (Sword3.activeInHierarchy == false)
-                Sword3.SetActive(true);
             TransitionState(YasuoState_Enum.Attackstate3);
             vcam3.SetActive(false);
             vcam4.SetActive(true);
