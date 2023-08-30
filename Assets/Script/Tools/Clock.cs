@@ -51,7 +51,6 @@ namespace Clock
         void Timing(){
             Instance.time += Time.deltaTime;
             clearTime = Instance.time;
-            Debug.Log(time);
         }
     }
 }
