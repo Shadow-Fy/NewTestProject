@@ -37,7 +37,7 @@ public class YasuoSwordFire : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<IDamageable>().GetHit(6);
+            other.GetComponent<IDamageable>().GetHit(10);
         }
     }
 }

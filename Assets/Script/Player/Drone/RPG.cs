@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RPG : Gun
 {
-    public float damage;
     public int roketNum;
     public float rocketAngel;
 

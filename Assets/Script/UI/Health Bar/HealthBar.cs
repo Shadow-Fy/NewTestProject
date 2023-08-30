@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour, IDamageable
 {
-    [SerializeField]public Image hpImg; // 血量显示的Image控件
-    [SerializeField]public Image hpEffectImg; // 血量变化效果的Image控件
+    [SerializeField] public Image hpImg; // 血量显示的Image控件
+    [SerializeField] public Image hpEffectImg; // 血量变化效果的Image控件
 
     private float maxHp = 100f; // 最大血量
     private float currentHp; // 当前血量
@@ -73,17 +73,18 @@ public class HealthBar : MonoBehaviour, IDamageable
     private void UpdateHealthBar()
     {
         // 根据当前血量与最大血量计算并更新血条显示
-        Debug.Log(characterStats.CurrentHealth);
-        Debug.Log(characterStats.MaxHealth);
-        hpImg.fillAmount = (float)characterStats.CurrentHealth/characterStats.MaxHealth;
-
+        hpImg.fillAmount = (float)characterStats.CurrentHealth / characterStats.MaxHealth;
+        if (characterStats.CurrentHealth <= 0)
+        {
+            gameObject.SetActive(false);
+        }
         // 缓慢减少血量变化效果的填充值
         if (updateCoroutine != null)
         {
             StopCoroutine(updateCoroutine);
         }
-
-        updateCoroutine = StartCoroutine(UpdateHpEffect());
+        if (characterStats.CurrentHealth > 0)
+            updateCoroutine = StartCoroutine(UpdateHpEffect());
     }
 
     // 协程，用于实现缓慢减少血量变化效果的填充值
@@ -102,7 +103,8 @@ public class HealthBar : MonoBehaviour, IDamageable
         hpEffectImg.fillAmount = hpImg.fillAmount; // 确保填充值与血条填充值一致
     }
 
-    public void GetHit(float damage){
+    public void GetHit(float damage)
+    {
         UpdateHealthBar();
     }
 }

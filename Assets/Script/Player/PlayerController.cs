@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     public float maxhealth;
     public float currenthealth;
     public bool isdead;
+    public float hurtCD = 0.4f;
+    private float hurtTime;
 
     [Header("跳跃相关")]
     public bool isground;
@@ -50,6 +52,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     public GameObject shadowPrefab;
     public GameObject dashEffectprefab;
     public GameObject dashDustPrefab;
+    private ScreenFlash sf;
+    public GameObject sfc;
+
 
     // Update is called once per frame
     public virtual void OnEnable()
@@ -57,13 +62,17 @@ public class PlayerController : MonoBehaviour, IDamageable
         currenthealth = maxhealth;
     }
 
-    public virtual void Start(){
+    public virtual void Start()
+    {
+        hurtTime = hurtCD;
+        sf = GetComponent<ScreenFlash>();
         //MMMMrD修改：向GameManager注册
         GameManager.Instance.RegisterPlayer(this);
     }
 
     public virtual void Update()
     {
+        hurtTime -= Time.deltaTime;
         horizontalmove_float = Input.GetAxis("Horizontal");
         horizontalmove_int = Input.GetAxisRaw("Horizontal");
         verticalmove_int = Input.GetAxisRaw("Vertical");
@@ -260,12 +269,18 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void GetHit(float damage)
     {
-        anim.SetTrigger("hit");
-        currenthealth -= damage;
-        if (currenthealth < 1)
+        if (hurtTime <= 0)
         {
-            currenthealth = 0;
-            isdead = true;
+            sfc.SetActive(true);
+            sf.FlashScreen();
+            //anim.SetTrigger("hit");
+            currenthealth -= damage;
+            hurtTime = hurtCD;
+            if (currenthealth < 1)
+            {
+                currenthealth = 0;
+                isdead = true;
+            }
         }
     }
 

@@ -38,6 +38,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
 
     [Space]
     [Header("基础属性道具")]
+    public GameObject[] cultist;
     public GameObject vcam2;
     public GameObject vcam3;
     public GameObject vcam4;
@@ -280,7 +281,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
 
     IEnumerator FireAttak_2()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.4f);
         for (int i = -4; i < 5; i++)
         {
             GameObject fireattack = ObjectPool.Instance.GetObject(fire);
@@ -289,7 +290,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;/* 计算角度 */
             fireattack.transform.rotation = Quaternion.AngleAxis(angle + i * 20 + 270, Vector3.forward);
         }
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.4f);
         for (int i = -4; i < 5; i++)
         {
             GameObject fireattack = ObjectPool.Instance.GetObject(fire);

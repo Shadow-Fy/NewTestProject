@@ -16,6 +16,7 @@ public class ShotGun : Gun
             GameObject bullet = ObjectPool.Instance.GetObject(bulletPrefab);
             bullet.GetComponent<Bullet>().SetColor(color);
             bullet.transform.position = muzzlePos.position;
+            bullet.GetComponent<Bullet>().damage = damage;
 
             if (bulletNum % 2 == 1)
             {

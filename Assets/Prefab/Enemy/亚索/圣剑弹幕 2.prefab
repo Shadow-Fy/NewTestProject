@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4161504727007165868}
   - component: {fileID: 5745850079162479786}
   - component: {fileID: 6017474933267286985}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: "\u5723\u5251\u5F39\u5E55 2"
   m_TagString: YasuoSword
   m_Icon: {fileID: 0}

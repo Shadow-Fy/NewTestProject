@@ -50,6 +50,7 @@ public class YasuoSword2 : MonoBehaviour
     public GameObject redLine5;
     private float lineTime;
     public float lineCD;
+    int damage = 20;
 
 
 
@@ -215,6 +216,7 @@ public class YasuoSword2 : MonoBehaviour
         switch (rotateAttackCount)
         {
             case 1: //·É½£3Ðý×ª
+                damage = 10;
                 transform.Rotate(Vector3.forward * rotateSpeed);
                 if (rotateSpeed < 30)
                     rotateSpeed += Time.deltaTime * 6;
@@ -493,6 +495,7 @@ public class YasuoSword2 : MonoBehaviour
 
                     _target = midPoint.transform.position + new Vector3(0, 14, 0);
                     rotateAttackCount = 20;
+                    damage = 50;
                 }
                 break;
             case 20:
@@ -510,6 +513,7 @@ public class YasuoSword2 : MonoBehaviour
                 {
                     transform.localScale = new Vector3(-2, 2, 1);
                     rotateAttackCount = 1;
+                    damage = 20;
                     rotateAttackBool = false;
 
                 }
@@ -522,7 +526,7 @@ public class YasuoSword2 : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<IDamageable>().GetHit(50);
+            other.GetComponent<IDamageable>().GetHit(damage);
         }
     }
 }

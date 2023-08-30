@@ -25,7 +25,7 @@ public class GroundAttack : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<IDamageable>().GetHit(15f);
+            other.GetComponent<IDamageable>().GetHit(15);
         }
 
     }

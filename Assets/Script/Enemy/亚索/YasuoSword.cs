@@ -33,12 +33,13 @@ public class YasuoSword : MonoBehaviour
     private int _attack2choose;
     public GameObject _yasuoSwordFire;
     private float _fire2time = 0.13f;
+    private float _fire2time_2 = 2f;
     private bool _canfire2;
     public ParticleSystem 剑雨;
 
     [Space]
     [Header("Attack3")]
-    private int _attack3choose;
+    //private int _attack3choose;
     [HideInInspector] public bool _isattack_3;
 
     private void Start()
@@ -80,11 +81,11 @@ public class YasuoSword : MonoBehaviour
             _isattack_2 = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            _attack3choose = 1;
-            _isattack_3 = true;
-        }
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    _attack3choose = 1;
+        //    _isattack_3 = true;
+        //}
 
         if (_isattack_1)
         {
@@ -96,10 +97,10 @@ public class YasuoSword : MonoBehaviour
             Attack2();
         }
 
-        if (_isattack_3)
-        {
-            Attack3();
-        }
+        //if (_isattack_3)
+        //{
+        //    Attack3();
+        //}
     }
 
     public void StartAttack1()/* 外部Boss调用 */
@@ -114,11 +115,11 @@ public class YasuoSword : MonoBehaviour
         _isattack_2 = true;
     }
 
-    public void StartAttack3()/* 外部Boss调用 */
-    {
-        _attack3choose = 1;
-        _isattack_3 = true;
-    }
+    //public void StartAttack3()/* 外部Boss调用 */
+    //{
+    //    _attack3choose = 1;
+    //    _isattack_3 = true;
+    //}
 
     void setRotation()//武器移动时有个角度的偏移
     {
@@ -211,17 +212,31 @@ public class YasuoSword : MonoBehaviour
         {
             GameObject swordfire = ObjectPool.Instance.GetObject(_yasuoSwordFire);
             swordfire.transform.position = transform.position;
+            swordfire.transform.rotation = Quaternion.Euler(0, 0, 90);
             _fire2time = 0.13f;
         }
         switch (_attack2choose)
         {
             case 1:
                 _target = new Vector3(58.9f, -1, transform.position.z) + new Vector3(_originPosition.x * 3, 0, 0);
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, -90), 8);
                 if (Vector2.Distance(transform.position, _target) < 0.1f)
+                {
+                    _canfire2 = true;
                     _attack2choose = 2;
+                }
                 break;
             case 2:
-                
+                _fire2time_2 -= Time.deltaTime;
+
+                if (_fire2time_2 <= 0)
+                {
+                    _canfire2 = false;
+                    _attack2choose = 0;
+                    剑雨.Play();
+                    _isattack_2 = false;
+                    _fire2time_2 = 2f;
+                }
                 break;
 
         }
@@ -261,35 +276,35 @@ public class YasuoSword : MonoBehaviour
         //}
 
     }
-    public void Attack3()
-    {
-        switch (_attack3choose)
-        {
-            case 1:
-                _target = new Vector3(58.91055f + _originPosition.x * 6, 20, 0);
-                if (Vector3.Distance(transform.position, _target) < 0.1f)
-                {
-                    transform.localScale = new Vector3(-7, 7);
-                    transform.rotation = Quaternion.Euler(0, 0, 90);
-                    speed = 30;
-                    _attack3choose = 2;
-                    coll.enabled = true;
-                    _boxcoll.enabled = true;
-                }
-                break;
-            case 2:
-                _target = new Vector3(_target.x, -50, 0);
-                if (Vector3.Distance(transform.position, _target) < 0.1f)
-                {
-                    transform.localScale = new Vector3(-1, 1);
-                    _attack3choose = 0;
-                    _isattack_3 = false;
-                    coll.enabled = false;
-                    _boxcoll.enabled = false;
-                }
-                break;
-        }
-    }
+    //public void Attack3()
+    //{
+    //    switch (_attack3choose)
+    //    {
+    //        case 1:
+    //            _target = new Vector3(58.91055f + _originPosition.x * 6, 20, 0);
+    //            if (Vector3.Distance(transform.position, _target) < 0.1f)
+    //            {
+    //                transform.localScale = new Vector3(-7, 7);
+    //                transform.rotation = Quaternion.Euler(0, 0, 90);
+    //                speed = 30;
+    //                _attack3choose = 2;
+    //                coll.enabled = true;
+    //                _boxcoll.enabled = true;
+    //            }
+    //            break;
+    //        case 2:
+    //            _target = new Vector3(_target.x, -50, 0);
+    //            if (Vector3.Distance(transform.position, _target) < 0.1f)
+    //            {
+    //                transform.localScale = new Vector3(-1, 1);
+    //                _attack3choose = 0;
+    //                _isattack_3 = false;
+    //                coll.enabled = false;
+    //                _boxcoll.enabled = false;
+    //            }
+    //            break;
+    //    }
+    //}
 
 
 
@@ -297,7 +312,7 @@ public class YasuoSword : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<IDamageable>().GetHit(25);
+            other.GetComponent<IDamageable>().GetHit(10);
         }
     }
 

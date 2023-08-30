@@ -14,6 +14,8 @@ public class Gun : MonoBehaviour
     protected Vector2 direction;//发射方向
     public Color color;//子弹颜色
     protected float timer;
+    public float damage;
+
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -53,6 +55,7 @@ public class Gun : MonoBehaviour
     {
         GameObject bullet = ObjectPool.Instance.GetObject(bulletPrefab);
         bullet.transform.position = muzzlePos.position;
+        bullet.GetComponent<Bullet>().damage = damage;
 
         float angel = Random.Range(-3f, 3f);
         bullet.GetComponent<Bullet>().SetSpeed(Quaternion.AngleAxis(angel, Vector3.forward) * direction, speed);
