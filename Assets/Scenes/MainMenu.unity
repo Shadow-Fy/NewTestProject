@@ -733,6 +733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 349724226}
+  multiply: 3.5
 --- !u!114 &349724226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9214,6 +9215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 0}
+  multiply: 0
 --- !u!1 &1921682799
 GameObject:
   m_ObjectHideFlags: 0
