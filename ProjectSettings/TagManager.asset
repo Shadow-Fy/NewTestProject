@@ -11,6 +11,7 @@ TagManager:
   - YasuoSword
   - fire
   - PlayerAttack
+  - HitBox
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - EnemyCheck
   - PlayerAttack
   - EnemyAttack
-  - 
+  - HitBox
   - 
   - 
   - 
@@ -47,4 +48,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 2906676217
+    locked: 0
+  - name: Ground
+    uniqueID: 1988178241
+    locked: 0
+  - name: Environment
+    uniqueID: 1685048397
+    locked: 0
+  - name: Player
+    uniqueID: 1721378077
+    locked: 0
+  - name: UI
+    uniqueID: 876721039
     locked: 0
