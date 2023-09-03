@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using Clock;
 
 public class BossLevel2 : MonoBehaviour
 {
+    public TimeUI timeUI;
     public GameObject bar;
     public GameObject vcam2;
     public GameObject vcam3;
@@ -25,9 +27,10 @@ public class BossLevel2 : MonoBehaviour
     }
     public void TimeLinePlay()
     {
-        bar.SetActive(false);
+        //bar.SetActive(false);
         yasuoControl.canhurt = false;
         yasuoControl.enabled = false;
+        timeUI.StopTiming();
         director.Play();
         vcam2.SetActive(false);
         vcam3.SetActive(true);
@@ -36,7 +39,8 @@ public class BossLevel2 : MonoBehaviour
 
     public void StartBoss(PlayableDirector obj)
     {
-        bar.SetActive(true);
+        //bar.SetActive(true);
+        timeUI.StartTiming();
         yasuoControl.enabled = true;
         yasuoControl.canhurt = true;
         boundaryLeft1.SetActive(false);

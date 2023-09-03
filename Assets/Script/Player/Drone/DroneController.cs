@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class DroneController : MonoBehaviour
 {
 
     public GameObject[] guns;
+    public GameObject[] gunsIcon;
     private int gunsNum;
     public Transform playerTR;
     public float speed = 40;
@@ -14,6 +17,7 @@ public class DroneController : MonoBehaviour
     void Start()
     {
         guns[0].SetActive(true);
+        gunsIcon[0].SetActive(true);
     }
 
     // Update is called once per frame
@@ -49,15 +53,19 @@ public class DroneController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             guns[gunsNum].SetActive(false);
+            gunsIcon[gunsNum].SetActive(false);
             if (--gunsNum < 0) gunsNum = guns.Length - 1;
             guns[gunsNum].SetActive(true);
+            gunsIcon[gunsNum].SetActive(true);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
             guns[gunsNum].SetActive(false);
+            gunsIcon[gunsNum].SetActive(false);
             if (++gunsNum > guns.Length - 1) gunsNum = 0;
             guns[gunsNum].SetActive(true);
+            gunsIcon[gunsNum].SetActive(true);
         }
     }
 }

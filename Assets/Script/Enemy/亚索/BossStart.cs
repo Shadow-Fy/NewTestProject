@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using Clock;
 
 public class BossStart : MonoBehaviour
 {
+    public TimeUI timeUI;
     public GameObject bar;
     public GameObject vcam1;
     public GameObject vcam2;
@@ -28,6 +30,7 @@ public class BossStart : MonoBehaviour
         yasuoControl.canhurt = true;
         boundaryLeft.SetActive(true);
         boundaryRight.SetActive(true);
+        timeUI.StartTiming();
         player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     }
 

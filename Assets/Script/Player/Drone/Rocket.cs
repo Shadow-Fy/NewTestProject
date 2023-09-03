@@ -10,6 +10,7 @@ public class Rocket : MonoBehaviour
     private Vector2 targetPos;
     private Vector3 direction;
     private float lifetime = 5f;
+    public float damage;
 
 
     private void OnEnable()
@@ -55,9 +56,13 @@ public class Rocket : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         ObjectPool.Instance.PushObject(gameObject);
         gameObject.GetComponent<TrailRenderer>().Clear();
+        if (other.CompareTag("Enemy"))
+        {
+            other.gameObject.GetComponent<IDamageable>().GetHit(damage);
+        }
     }
 }

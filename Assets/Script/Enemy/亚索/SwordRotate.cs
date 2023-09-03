@@ -11,4 +11,12 @@ public class SwordRotate : MonoBehaviour
     {
         transform.Rotate(Vector3.forward * speed);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<IDamageable>().GetHit(10);
+        }
+    }
 }

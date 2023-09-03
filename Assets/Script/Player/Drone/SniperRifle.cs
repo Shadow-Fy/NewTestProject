@@ -8,6 +8,7 @@ public class SniperRifle : Gun
     {
         GameObject bullet = ObjectPool.Instance.GetObject(bulletPrefab);
         bullet.transform.position = muzzlePos.position;
+        bullet.GetComponent<Bullet>().damage = damage;
 
         bullet.GetComponent<Bullet>().SetSpeed(direction, speed);
         bullet.GetComponent<Bullet>().SetColor(color);

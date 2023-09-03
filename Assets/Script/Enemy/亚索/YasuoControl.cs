@@ -26,10 +26,9 @@ public class YasuoControl : MonoBehaviour, IDamageable
 
     [Space]
     [Header("三阶段使用的物品")]
+    public GameObject magicCircle;
     private bool startlevel3;
     public BossLevel3 bossLevel3;
-    public GameObject circle;//保护罩
-    public GameObject levelfire;
     public GameObject groundattack1prefeb;
     public GameObject groundattack2prefeb;
 
@@ -39,6 +38,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
 
     [Space]
     [Header("基础属性道具")]
+    public GameObject[] cultist;
     public GameObject vcam2;
     public GameObject vcam3;
     public GameObject vcam4;
@@ -149,6 +149,9 @@ public class YasuoControl : MonoBehaviour, IDamageable
         {
             if (startlevel3)
             {
+                transform.position = new Vector3((flyPointLeftUp.position.x + flyPointRightDown.position.x) / 2 + 1, (flyPointLeftUp.position.y + flyPointRightDown.position.y) / 2 + 4);
+                magicCircle.SetActive(true);
+                _Rb.bodyType = RigidbodyType2D.Static;
                 bossLevel3.TimeLinePlay();
                 startlevel3 = false;
             }
@@ -156,8 +159,6 @@ public class YasuoControl : MonoBehaviour, IDamageable
                 Sword1.SetActive(false);
             if (Sword2.activeInHierarchy == true)
                 Sword2.SetActive(false);
-            if (Sword3.activeInHierarchy == false)
-                Sword3.SetActive(true);
             TransitionState(YasuoState_Enum.Attackstate3);
             vcam3.SetActive(false);
             vcam4.SetActive(true);
@@ -280,7 +281,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
 
     IEnumerator FireAttak_2()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.4f);
         for (int i = -4; i < 5; i++)
         {
             GameObject fireattack = ObjectPool.Instance.GetObject(fire);
@@ -289,7 +290,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;/* 计算角度 */
             fireattack.transform.rotation = Quaternion.AngleAxis(angle + i * 20 + 270, Vector3.forward);
         }
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.4f);
         for (int i = -4; i < 5; i++)
         {
             GameObject fireattack = ObjectPool.Instance.GetObject(fire);

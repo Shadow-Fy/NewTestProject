@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RPG : Gun
 {
-    public float damage;
     public int roketNum;
     public float rocketAngel;
 
@@ -15,6 +14,7 @@ public class RPG : Gun
         for (int i = 0; i < roketNum; i++)
         {
             GameObject bullet = ObjectPool.Instance.GetObject(bulletPrefab);
+            bullet.GetComponent<Rocket>().damage = damage;
             bullet.transform.position = muzzlePos.position;
 
             if (roketNum % 2 == 1)
@@ -26,16 +26,6 @@ public class RPG : Gun
                 bullet.transform.right = Quaternion.AngleAxis(rocketAngel * (i - median) + rocketAngel / 2, Vector3.forward) * direction;
             }
             bullet.GetComponent<Rocket>().SetTarget(mousePos);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        ObjectPool.Instance.PushObject(gameObject);
-        gameObject.GetComponent<TrailRenderer>().Clear();
-        if (other.CompareTag("Enemy"))
-        {
-            other.gameObject.GetComponent<IDamageable>().GetHit(damage);
         }
     }
 }

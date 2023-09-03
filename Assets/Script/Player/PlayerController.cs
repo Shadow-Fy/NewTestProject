@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     public float maxhealth;
     public float currenthealth;
     public bool isdead;
+    public float hurtCD = 0.4f;
+    private float hurtTime;
 
     [Header("跳跃相关")]
     public bool isground;
@@ -26,6 +28,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     public float checkradius;
     public bool canjump;
     public GameObject doubleJumpEffectPrefab;
+    public float fallMultiplier = 4f;
+    public float lowJumpMultiplier = 7f;
 
     [Header("移动相关")]
     public float normalspeed = 10;
@@ -50,6 +54,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     public GameObject shadowPrefab;
     public GameObject dashEffectprefab;
     public GameObject dashDustPrefab;
+    private ScreenFlash sf;
+    public GameObject sfc;
+
 
     // Update is called once per frame
     public virtual void OnEnable()
@@ -57,13 +64,17 @@ public class PlayerController : MonoBehaviour, IDamageable
         currenthealth = maxhealth;
     }
 
-    public virtual void Start(){
+    public virtual void Start()
+    {
+        hurtTime = hurtCD;
+        sf = GetComponent<ScreenFlash>();
         //MMMMrD修改：向GameManager注册
         GameManager.Instance.RegisterPlayer(this);
     }
 
     public virtual void Update()
     {
+        hurtTime -= Time.deltaTime;
         horizontalmove_float = Input.GetAxis("Horizontal");
         horizontalmove_int = Input.GetAxisRaw("Horizontal");
         verticalmove_int = Input.GetAxisRaw("Vertical");
@@ -74,6 +85,16 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
         ReadyDash();
         DoubleTouch();
+
+        if (!isDash)
+            if (rb.velocity.y < 0)
+            {
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            }
+            else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+            {
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            }
     }
 
     protected virtual void FixedUpdate()
@@ -234,6 +255,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if (isDash && rb.bodyType == RigidbodyType2D.Dynamic)
         {
+            Debug.Log(rb.velocity);
             anim.SetBool("dash", true);
             anim.SetBool("run", false);
             anim.SetBool("fall", false);
@@ -251,8 +273,8 @@ public class PlayerController : MonoBehaviour, IDamageable
             }
             if (dashTimeleft <= 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x, 0);
                 isDash = false;
+                rb.velocity = new Vector2(rb.velocity.x, 0);
                 anim.SetBool("dash", false);
             }
         }
@@ -260,12 +282,18 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void GetHit(float damage)
     {
-        anim.SetTrigger("hit");
-        currenthealth -= damage;
-        if (currenthealth < 1)
+        if (hurtTime <= 0)
         {
-            currenthealth = 0;
-            isdead = true;
+            sfc.SetActive(true);
+            sf.FlashScreen();
+            //anim.SetTrigger("hit");
+            currenthealth -= damage;
+            hurtTime = hurtCD;
+            if (currenthealth < 1)
+            {
+                currenthealth = 0;
+                isdead = true;
+            }
         }
     }
 
