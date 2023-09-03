@@ -53,7 +53,7 @@ public class ChangeScene : MonoBehaviour
         ////先不加载下一场景
         while (!operation.isDone)
         {
-            backGround.color = new Color(1, 1, 1, alpha += Time.deltaTime * 4);
+            backGround.color = new Color(1, 1, 1, alpha += Time.deltaTime * multiply);
             if (alpha >= 1)
             {
                 operation.allowSceneActivation = true;

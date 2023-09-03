@@ -15,8 +15,11 @@ public class HealthBar : MonoBehaviour, IDamageable
     private Coroutine updateCoroutine;
     private CharacterStats characterStats;
 
+    Quaternion myRotaion;
+    
     void Start()
     {
+        myRotaion = Quaternion.identity;
         characterStats = transform.parent.gameObject.GetComponent<CharacterStats>();
 
         UpdateHealthBar(); // 更新血条显示
@@ -25,6 +28,10 @@ public class HealthBar : MonoBehaviour, IDamageable
         //     maxHp = characterStats.MaxHealth;
         //     currentHp = characterStats.CurrentHealth;
         // }
+    }
+
+    void Update() {
+        transform.rotation = myRotaion;        
     }
 
     public void SetHealth(float health)

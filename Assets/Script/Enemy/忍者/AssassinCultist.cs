@@ -22,7 +22,7 @@ public class AssassinCultist : Boss
         anim.SetBool("IsAttack", isAttack);
         if(isDush)
         {
-            //ShadowSprite shadowSprite = null;//ObjectPool.Instance.GetObjectButNoSetActive(shadow).GetComponent<ShadowSprite>();
+            // ShadowSprite shadowSprite = null;//ObjectPool.Instance.GetObjectButNoSetActive(shadow).GetComponent<ShadowSprite>();
             //shadowSprite.Init(transform, spriteRenderer);
             // shadowSprite.gameObject.SetActive(true);
         }

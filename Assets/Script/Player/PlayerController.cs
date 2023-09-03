@@ -255,7 +255,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if (isDash && rb.bodyType == RigidbodyType2D.Dynamic)
         {
-            Debug.Log(rb.velocity);
+            // Debug.Log(rb.velocity);
             anim.SetBool("dash", true);
             anim.SetBool("run", false);
             anim.SetBool("fall", false);
