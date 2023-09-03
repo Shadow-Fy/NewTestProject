@@ -30,6 +30,7 @@ public class Attackstate3 : YasuoBaseState
     {
         if (!Yasuo.Sword3.GetComponent<YasuoSword2>().lineAttackBool && !Yasuo.Sword3.GetComponent<YasuoSword2>().rotateAttackBool)
         {
+            Yasuo.canhurt = true;
             Yasuo.magicCircle.SetActive(false);
             for (int i = 0; i < Yasuo.cultist.Length; i++)
             {

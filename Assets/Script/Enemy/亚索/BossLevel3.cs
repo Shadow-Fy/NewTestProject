@@ -42,7 +42,6 @@ public class BossLevel3 : MonoBehaviour
         timeUI.StartTiming();
         yasuoControl.enabled = true;
         yasuoControl.Sword3.GetComponent<YasuoSword2>().lineAttackBool = true;
-        yasuoControl.canhurt = true;
         boundaryLeft2.SetActive(false);
         boundaryRight2.SetActive(false);
         boundaryLeft3.SetActive(true);
