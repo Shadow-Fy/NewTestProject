@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
+    [Header("基本組件")]
     [SerializeField] protected Rigidbody2D rb;
     [SerializeField] protected Animator anim;
+    [SerializeField] protected SpriteRenderer spriteRenderer;
 
     protected float horizontalmove_float;
     protected float horizontalmove_int;
@@ -68,6 +70,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         hurtTime = hurtCD;
         sf = GetComponent<ScreenFlash>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         //MMMMrD修改：向GameManager注册
         GameManager.Instance.RegisterPlayer(this);
     }
@@ -132,7 +136,10 @@ public class PlayerController : MonoBehaviour, IDamageable
                 shadowcd += Time.deltaTime;
                 if (shadowcd >= 0.1f)
                 {
-                    ObjectPool.Instance.GetObject(shadowPrefab);
+                    //MMMMrD修改：更新玩家使用Shadow的方式
+                    GameObject shadowSprite = ObjectPool.Instance.GetObjectButNotActive(shadowPrefab);
+                    shadowSprite.GetComponent<ShadowSprite>().Init(transform, spriteRenderer);
+                    shadowSprite.SetActive(true);
                     shadowcd = 0;
                 }
             }
@@ -149,7 +156,10 @@ public class PlayerController : MonoBehaviour, IDamageable
                 shadowcd += Time.deltaTime;
                 if (shadowcd >= 0.1f)
                 {
-                    ObjectPool.Instance.GetObject(shadowPrefab);
+                    GameObject shadowSprite = ObjectPool.Instance.GetObjectButNotActive(shadowPrefab);
+                    shadowSprite.GetComponent<ShadowSprite>().Init(transform, spriteRenderer);
+                    shadowSprite.SetActive(true);
+
                     shadowcd = 0;
                 }
             }
@@ -192,8 +202,6 @@ public class PlayerController : MonoBehaviour, IDamageable
             {
                 GameObject doubleJumpEffect = ObjectPool.Instance.GetObject(doubleJumpEffectPrefab);
                 doubleJumpEffect.transform.position = transform.position + new Vector3(0, -1.2f, 0);
-
-
             }
             jumpcount--;
 
@@ -267,7 +275,9 @@ public class PlayerController : MonoBehaviour, IDamageable
                 dashTimeleft -= Time.deltaTime;
                 if (shadowcd >= 0.02f)
                 {
-                    ObjectPool.Instance.GetObject(shadowPrefab);
+                    GameObject shadow = ObjectPool.Instance.GetObjectButNotActive(shadowPrefab);
+                    shadow.GetComponent<ShadowSprite>().Init(transform, spriteRenderer);
+                    shadow.SetActive(true);
                     shadowcd = 0;
                 }
             }
