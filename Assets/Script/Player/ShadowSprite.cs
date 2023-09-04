@@ -30,15 +30,16 @@ public class ShadowSprite : MonoBehaviour
         // player = GameObject.FindGameObjectWithTag("Player").transform;
         thisSprite = GetComponent<SpriteRenderer>();
         // playerSprite = player.GetComponent<SpriteRenderer>();
+        if (userSpriteRenderer != null)
+        {
+            alpha = alphaSet;
+            thisSprite.sprite = userSpriteRenderer.sprite;
+            transform.position = userTransform.position;
+            transform.localScale = userTransform.localScale;
+            transform.rotation = userTransform.rotation;
+            activeStart = Time.time;
+        }
 
-        alpha = alphaSet;
-
-        thisSprite.sprite = userSpriteRenderer.sprite;
-        transform.position = userTransform.position;
-        transform.localScale = userTransform.localScale;
-        transform.rotation = userTransform.rotation;
-
-        activeStart = Time.time;
 
 
     }
@@ -59,7 +60,8 @@ public class ShadowSprite : MonoBehaviour
 
     //TODO：往后可以优化ShadowSprite，使得所有角色都可以使用
     //MMMMrD添加：忍者脚本需要
-    public void Init(Transform transform, SpriteRenderer spriteRenderer){
+    public void Init(Transform transform, SpriteRenderer spriteRenderer)
+    {
         userTransform = transform;
         userSpriteRenderer = spriteRenderer;
         Debug.Log(userTransform);

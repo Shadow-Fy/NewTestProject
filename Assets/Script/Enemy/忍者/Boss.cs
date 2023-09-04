@@ -190,6 +190,7 @@ public class Boss : MonoBehaviour, IDamageable, GameOverReset
     {
         if (!targets.Contains(other.transform) && other.CompareTag("Player")) //&& !GameManager.Instance.gameOver
         {
+            Debug.Log("111      " + other.gameObject);
             targets.Add(other.transform);
         }
     }

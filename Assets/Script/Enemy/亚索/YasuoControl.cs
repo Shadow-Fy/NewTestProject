@@ -126,13 +126,13 @@ public class YasuoControl : MonoBehaviour, IDamageable
         _distance = Vector2.Distance(transform.position, _playerTR.position);
 
 
-        if (health > 1500 && !_first)
+        if (health > 1300 && !_first)
         {
             _first = true;
             TransitionState(YasuoState_Enum.Attackstate1);
 
         }
-        else if (health <= 1500 && health >= 900 && !_second)
+        else if (health <= 1300 && health >= 700 && !_second)
         {
             if (startlevel2)
             {
@@ -145,7 +145,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
 
             _second = true;
         }
-        else if (health < 900 && !_third)
+        else if (health < 700 && !_third)
         {
             if (startlevel3)
             {
@@ -192,17 +192,17 @@ public class YasuoControl : MonoBehaviour, IDamageable
 
     public void SwitchStateByHealth()
     {
-        if (health > 1500)
+        if (health > 1300)
         {
             TransitionState(YasuoState_Enum.Attackstate1);
         }
-        else if (health < 1500 && health >= 900)
+        else if (health < 1300 && health >= 700)
         {
             if (Sword2.activeInHierarchy == false)
                 Sword2.SetActive(true);
             TransitionState(YasuoState_Enum.Attackstate2);
         }
-        else if (health < 900)
+        else if (health < 700)
         {
             if (Sword1.activeInHierarchy == true)
                 Sword1.SetActive(false);
