@@ -25,7 +25,7 @@ public class ObjectPool
         GameObject obj;
         if (!objectPool.ContainsKey(prefab.name) || objectPool[prefab.name].Count == 0)
         {
-            obj = GameObject.Instantiate(prefab);
+            obj = Object.Instantiate(prefab);
             PushObject(obj);
             if (pool == null)
                 pool = new GameObject("ObjectPool");
@@ -41,6 +41,29 @@ public class ObjectPool
         obj.SetActive(true);
         return obj;
 
+    }
+
+    public GameObject GetObjectButNotActive(GameObject prefab)
+    {
+        GameObject obj;
+        if (!objectPool.ContainsKey(prefab.name) || objectPool[prefab.name].Count == 0)
+        {
+            Debug.Log(prefab);
+            obj = Object.Instantiate(prefab);
+            PushObject(obj);
+            if (pool == null)
+                pool = new GameObject("ObjectPool");
+            GameObject child = GameObject.Find(prefab.name);
+            if (!child)
+            {
+                child = new GameObject(prefab.name);
+                child.transform.SetParent(pool.transform);
+            }
+            obj.transform.SetParent(child.transform);
+        }
+        obj = objectPool[prefab.name].Dequeue();
+        obj.SetActive(false);
+        return obj;
     }
 
     public void PushObject(GameObject prefab)
