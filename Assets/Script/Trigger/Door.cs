@@ -6,7 +6,6 @@ public class Door : MonoBehaviour
 {
     bool isStay = false;
     [SerializeField] GameObject tipUI;
-    public ChangeScene changeScene;
 
     void Update()
     {

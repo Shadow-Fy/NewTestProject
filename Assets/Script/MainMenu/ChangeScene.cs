@@ -32,7 +32,7 @@ public class ChangeScene : MonoBehaviour
 
         if (Input.anyKeyDown)
         {
-            //SceneControl.Instance.LoadScene();
+            SceneControl.Instance.LoadScene();
         }
 
     }

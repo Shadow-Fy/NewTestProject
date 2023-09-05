@@ -64,7 +64,7 @@ public class ShadowSprite : MonoBehaviour
     {
         userTransform = transform;
         userSpriteRenderer = spriteRenderer;
-        Debug.Log(userTransform);
-        Debug.Log(userSpriteRenderer);
+        //Debug.Log(userTransform);
+        //Debug.Log(userSpriteRenderer);
     }
 }

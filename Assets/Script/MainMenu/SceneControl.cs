@@ -13,12 +13,12 @@ public class SceneControl : Singleton<SceneControl>
     protected override void Awake()
     {
         base.Awake();
-
+        //DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
-        //StartCoroutine(NewScene());
+        StartCoroutine(NewScene());
     }
 
     public void LoadScene()
@@ -28,12 +28,9 @@ public class SceneControl : Singleton<SceneControl>
 
     IEnumerator NewScene()
     {
+        while (alpha >= 0)
         {
-            while (alpha >= 0)
-            {
-
-            }
-
+            backGround.color = new Color(1, 1, 1, alpha -= Time.deltaTime * multiply);
             yield return null;
         }
     }
@@ -48,7 +45,7 @@ public class SceneControl : Singleton<SceneControl>
             if (alpha >= 1)
             {
                 operation.allowSceneActivation = true;
-                backGround.color = new Color(1, 1, 1, alpha -= Time.deltaTime * multiply);
+                StartCoroutine(loadlevel());
             }
 
             yield return null;
