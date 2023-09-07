@@ -13,12 +13,9 @@ public class SceneControl : Singleton<SceneControl>
     protected override void Awake()
     {
         base.Awake();
-        //DontDestroyOnLoad(gameObject);
-    }
-
-    private void Start()
-    {
+        alpha = 1;
         StartCoroutine(NewScene());
+        //DontDestroyOnLoad(gameObject);
     }
 
     public void LoadScene()
@@ -45,7 +42,7 @@ public class SceneControl : Singleton<SceneControl>
             if (alpha >= 1)
             {
                 operation.allowSceneActivation = true;
-                StartCoroutine(loadlevel());
+
             }
 
             yield return null;
