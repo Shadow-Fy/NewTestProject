@@ -9,16 +9,16 @@ public class CharacterStats : MonoBehaviour
     public CharacterData_SO characterData; //角色当前基础数值
     public AttackData_SO tampletAttackData;
     public AttackData_SO attackData;
-    [HideInInspector]public bool isCritical;    //用于判断是否暴击
-    void Awake() 
+    [HideInInspector] public bool isCritical;    //用于判断是否暴击
+    void Awake()
     {
         //初始化，根据数值模板生成一个可更改的数值
-        if(tampletData != null)
+        if (tampletData != null)
         {
             characterData = Instantiate(tampletData);
         }
 
-        if(tampletAttackData != null)
+        if (tampletAttackData != null)
         {
             attackData = Instantiate(tampletAttackData);
         }
@@ -27,116 +27,116 @@ public class CharacterStats : MonoBehaviour
     #region get Info form CharacterData_So
     public int MaxHealth    //最大生命值
     {
-        get{if(characterData != null){return characterData.maxHealth;} else return 0;}
+        get { if (characterData != null) { return characterData.maxHealth; } else return 0; }
 
-        set{characterData.maxHealth = value;}
+        set { characterData.maxHealth = value; }
     }
 
     public int CurrentHealth    //当前生命值
     {
-        get{if(characterData != null){return characterData.currentHealth;} else return 0;}
+        get { if (characterData != null) { return characterData.currentHealth; } else return 0; }
 
-        set{characterData.currentHealth = value;}
+        set { characterData.currentHealth = value; }
     }
 
     public int BaseSpeed    //基础移动速度
     {
-        get{if(characterData != null){return characterData.baseSpeed;} else return 0;}
+        get { if (characterData != null) { return characterData.baseSpeed; } else return 0; }
 
-        set{characterData.baseSpeed = value;}
+        set { characterData.baseSpeed = value; }
     }
 
     public int CurrentSpeed //当前移动速度
     {
-        get{if(characterData != null){return characterData.currentSpeed;} else return 0;}
+        get { if (characterData != null) { return characterData.currentSpeed; } else return 0; }
 
-        set{characterData.currentSpeed = value;}
+        set { characterData.currentSpeed = value; }
     }
 
     public int BaseJumpForce    //基础跳跃力
     {
-        get{if(characterData != null){return characterData.baseJumpForce;} else return 0;}
+        get { if (characterData != null) { return characterData.baseJumpForce; } else return 0; }
 
-        set{characterData.baseJumpForce = value;}
+        set { characterData.baseJumpForce = value; }
     }
 
     public int CurrentJumpForce //当前跳跃力
     {
-        get{if(characterData != null){return characterData.currentJumpForce;} else return 0;}
+        get { if (characterData != null) { return characterData.currentJumpForce; } else return 0; }
 
-        set{characterData.currentJumpForce = value;}
+        set { characterData.currentJumpForce = value; }
     }
 
     public int Money    //当前金币数
     {
-        get{if(characterData != null){return characterData.money;} else return 0;}
+        get { if (characterData != null) { return characterData.money; } else return 0; }
 
-        set{characterData.money = value;}
+        set { characterData.money = value; }
     }
-    
+
     #endregion
 
     #region get Info form AttackData_SO
 
     public int BaseDefence  //基础防御力
     {
-        get{if(attackData != null){return attackData.baseDefence;} else return 0;}
+        get { if (attackData != null) { return attackData.baseDefence; } else return 0; }
 
-        set{attackData.baseDefence = value;}
+        set { attackData.baseDefence = value; }
     }
 
     public int CurrentDefence   //当前防御力
     {
-        get{if(attackData != null){return attackData.currentDefence;} else return 0;}
+        get { if (attackData != null) { return attackData.currentDefence; } else return 0; }
 
-        set{attackData.currentDefence = value;}
+        set { attackData.currentDefence = value; }
     }
 
     public int BaseDamage   //基础攻击力
     {
-        get{if(attackData != null){return attackData.baseDamage;} else return 0;}
+        get { if (attackData != null) { return attackData.baseDamage; } else return 0; }
 
-        set{attackData.baseDamage = value;}
+        set { attackData.baseDamage = value; }
     }
 
     public int CurrentDamage    //当前攻击力
     {
-        get{if(attackData != null){return attackData.currentDamage;} else return 0;}
+        get { if (attackData != null) { return attackData.currentDamage; } else return 0; }
 
-        set{attackData.currentDamage = value;}
+        set { attackData.currentDamage = value; }
     }
 
     public float CriticalChance //角色暴击率
     {
-        get{if(attackData != null){return attackData.criticalChance;} else return 0;}
+        get { if (attackData != null) { return attackData.criticalChance; } else return 0; }
 
-        set{attackData.criticalChance = value;}
+        set { attackData.criticalChance = value; }
     }
 
     public float CriticalMultiple
     {
-        get{if(attackData != null){return attackData.criticalMultiple;} else return 0;}
+        get { if (attackData != null) { return attackData.criticalMultiple; } else return 0; }
 
-        set{attackData.criticalMultiple = value;}
+        set { attackData.criticalMultiple = value; }
     }
 
     public float AttackDistance //攻击距离
     {
-        get{if(attackData != null){return attackData.attackDistance;} else return 0;}
+        get { if (attackData != null) { return attackData.attackDistance; } else return 0; }
 
-        set{attackData.attackDistance = value;}
+        set { attackData.attackDistance = value; }
     }
 
     public float SkillDistance  //技能距离
     {
-        get{if(attackData != null){return attackData.skillDistance;} else return 0;}
+        get { if (attackData != null) { return attackData.skillDistance; } else return 0; }
 
-        set{attackData.skillDistance = value;}
+        set { attackData.skillDistance = value; }
     }
 
-    #endregion 
+    #endregion
 
-    
+
     //受伤函数，由受伤者自身调用
     //TODO：调用位置可能会更改,在这插个眼
     public void TakeDamage(CharacterStats attacker)
@@ -146,14 +146,16 @@ public class CharacterStats : MonoBehaviour
         CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
 
         //更改角色血条
-        
+
 
         //生命值小于零时，将自身经验值给attack
-        if(CurrentHealth <= 0)
+        if (CurrentHealth <= 0)
         {
-            if(attacker.characterData != null)
+            if (attacker.characterData != null)
             {
                 attacker.characterData.UpdateExp(characterData.killExp);
+                gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             }
         }
     }
@@ -161,7 +163,7 @@ public class CharacterStats : MonoBehaviour
     //造成伤害函数，受伤函数调用
     int MakeDamage()
     {
-        if(isCritical)
+        if (isCritical)
         {
             //暴击情况
             isCritical = false;

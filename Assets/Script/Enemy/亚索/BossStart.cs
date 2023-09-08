@@ -31,7 +31,8 @@ public class BossStart : MonoBehaviour
         boundaryLeft.SetActive(true);
         boundaryRight.SetActive(true);
         timeUI.StartTiming();
-        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        if (player.GetComponent<Rigidbody2D>() != null)
+            player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
