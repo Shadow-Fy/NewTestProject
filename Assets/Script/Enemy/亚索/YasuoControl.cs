@@ -132,7 +132,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
             TransitionState(YasuoState_Enum.Attackstate1);
 
         }
-        else if (health <= 1300 && health >= 700 && !_second)
+        else if (health <= 1300 && health >= 350 && !_second)
         {
             if (startlevel2)
             {
@@ -145,7 +145,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
 
             _second = true;
         }
-        else if (health < 700 && !_third)
+        else if (health < 350 && !_third)
         {
             if (startlevel3)
             {
@@ -155,6 +155,7 @@ public class YasuoControl : MonoBehaviour, IDamageable
                 bossLevel3.TimeLinePlay();
                 startlevel3 = false;
             }
+
             if (Sword1.activeInHierarchy == true)
                 Sword1.SetActive(false);
             if (Sword2.activeInHierarchy == true)
@@ -196,13 +197,13 @@ public class YasuoControl : MonoBehaviour, IDamageable
         {
             TransitionState(YasuoState_Enum.Attackstate1);
         }
-        else if (health < 1300 && health >= 700)
+        else if (health < 1300 && health >= 350)
         {
             if (Sword2.activeInHierarchy == false)
                 Sword2.SetActive(true);
             TransitionState(YasuoState_Enum.Attackstate2);
         }
-        else if (health < 700)
+        else if (health < 350)
         {
             if (Sword1.activeInHierarchy == true)
                 Sword1.SetActive(false);

@@ -39857,7 +39857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &491689752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40916,8 +40916,8 @@ MonoBehaviour:
   shellPrefab: {fileID: 4691297613483531048, guid: 42340d7cad19ac24dabccd38a0b06ac7, type: 3}
   color: {r: 1, g: 0, b: 0.05406809, a: 0}
   damage: 3
-  roketNum: 20
-  rocketAngel: 10
+  roketNum: 12
+  rocketAngel: 8
 --- !u!1 &874684820
 GameObject:
   m_ObjectHideFlags: 0

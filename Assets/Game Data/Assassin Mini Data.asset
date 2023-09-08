@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa717b729b6a6d438c47a3ddd027497, type: 3}
   m_Name: Assassin Mini Data
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
+  maxHealth: 250
+  currentHealth: 250
   baseSpeed: 8
   currentSpeed: 8
   baseJumpForce: 2
