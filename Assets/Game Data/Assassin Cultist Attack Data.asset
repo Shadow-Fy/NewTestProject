@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90d967e5db64184da577e15e3936679, type: 3}
   m_Name: Assassin Cultist Attack Data
   m_EditorClassIdentifier: 
-  baseDefence: 0
-  currentDefence: 0
-  baseDamage: 0
-  currentDamage: 0
-  criticalMultiple: 0
-  criticalChance: 0
-  attackDistance: 0.8
-  skillDistance: 3
+  baseDefence: 2
+  currentDefence: 2
+  baseDamage: 5
+  currentDamage: 5
+  criticalMultiple: 5
+  criticalChance: 5
+  attackDistance: 1
+  skillDistance: 5

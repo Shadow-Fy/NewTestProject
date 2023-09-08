@@ -282,6 +282,7 @@ public class Boss : MonoBehaviour, IDamageable, GameOverReset
             if (characterStats.CurrentHealth <= 0)
             {
                 isDead = true;
+                EventManager.Instance?.InvokeEvent(EventType.BossDie);
 
                 if (enemies.Contains(_enemy))
                 {

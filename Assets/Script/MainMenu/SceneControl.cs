@@ -36,6 +36,7 @@ public class SceneControl : Singleton<SceneControl>
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
         operation.allowSceneActivation = false;
+        ObjectPool.Instance.ClearObjectPool();
         while (!operation.isDone)
         {
             backGround.color = new Color(1, 1, 1, alpha += Time.deltaTime * multiply);

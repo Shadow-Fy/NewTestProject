@@ -12,7 +12,8 @@ namespace Assassin_Cultist_State
             Vector2 destination = new Vector2(randomX, boss.transform.position.y);
             Collider2D aroundObject = Physics2D.OverlapCircle(destination, 10, boss.playerMask);
 
-            if(aroundObject != null)
+            //MMMMrD修改：修改前为 "!= null", 该写法导致栈溢出, 如果有其他bug再尝试其他写法
+            if(aroundObject == null)
             {
                 boss.currentParentState.TransitionChildState(boss.currentParentState.appearState, boss);
                 return;
