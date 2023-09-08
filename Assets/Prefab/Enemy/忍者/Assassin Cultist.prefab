@@ -83,9 +83,9 @@ MonoBehaviour:
   isHide: 0
   isHalfHealth: 0
   attackCount: 1
-  skillCoolDown: 0
-  attackCoolDown: 0
-  skillAttackCoolDown: 0
+  skillCoolDown: 2.5
+  attackCoolDown: 1.5
+  skillAttackCoolDown: 2.5
   lastskill: 0
   lastAttack: 0
   lastSkillAttack: 0
