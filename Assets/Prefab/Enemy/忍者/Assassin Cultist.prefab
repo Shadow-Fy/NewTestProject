@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9401cd77e6ead4e97d009949a52d83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tampletData: {fileID: 11400000, guid: 7c8971abbd9af564ca645f5290854e25, type: 2}
+  tampletData: {fileID: 11400000, guid: 1b6ae43641ffbc244b752f729aa1d2cf, type: 2}
   characterData: {fileID: 0}
   tampletAttackData: {fileID: 11400000, guid: b378c07a77f935940ab6fcb2d2acad03, type: 2}
   attackData: {fileID: 0}

@@ -76,4 +76,8 @@ public class ObjectPool
         prefab.SetActive(false);
     }
 
+    //外部调用清除字典
+    public void ClearObjectPool(){
+        objectPool.Clear();
+    }
 }
