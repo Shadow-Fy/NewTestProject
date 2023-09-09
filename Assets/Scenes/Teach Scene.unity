@@ -1062,7 +1062,7 @@ MonoBehaviour:
   groundlayer:
     serializedVersion: 2
     m_Bits: 128
-  checkradius: 0.09
+  checkradius: 0.36
   canjump: 0
   doubleJumpEffectPrefab: {fileID: 900889111706331137, guid: 989cff8283b41284ea8649f59690dac8, type: 3}
   fallMultiplier: 4
@@ -1273,8 +1273,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1721378077
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c0b5c2f8c9bca77449215d6e11a328f4, type: 3}
   m_Color: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
@@ -1295,7 +1295,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 259388775}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3, y: 16, z: 8}
+  m_LocalPosition: {x: -3, y: 16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -39415,7 +39415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 370859452}
   - component: {fileID: 370859453}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: table_shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39501,7 +39501,7 @@ GameObject:
   - component: {fileID: 376066016}
   - component: {fileID: 376066015}
   - component: {fileID: 376066014}
-  m_Layer: 5
+  m_Layer: 14
   m_Name: Tips Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39926,7 +39926,7 @@ GameObject:
   m_Component:
   - component: {fileID: 529407286}
   - component: {fileID: 529407287}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: scroll_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40113,7 +40113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 602605851}
   - component: {fileID: 602605852}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: books
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40228,7 +40228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 642041877}
   - component: {fileID: 642041878}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: scroll_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40315,7 +40315,7 @@ GameObject:
   - component: {fileID: 695322967}
   - component: {fileID: 695322966}
   - component: {fileID: 695322965}
-  m_Layer: 5
+  m_Layer: 14
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40603,7 +40603,7 @@ GameObject:
   m_Component:
   - component: {fileID: 746551244}
   - component: {fileID: 746551245}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: books
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41012,7 +41012,7 @@ GameObject:
   m_Component:
   - component: {fileID: 913124755}
   - component: {fileID: 913124756}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: books
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41096,7 +41096,7 @@ GameObject:
   m_Component:
   - component: {fileID: 940733639}
   - component: {fileID: 940733640}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: table_shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41749,7 +41749,7 @@ GameObject:
   - component: {fileID: 1086252268}
   - component: {fileID: 1086252267}
   - component: {fileID: 1086252266}
-  m_Layer: 5
+  m_Layer: 14
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42051,7 +42051,7 @@ GameObject:
   - component: {fileID: 1152547074}
   - component: {fileID: 1152547073}
   - component: {fileID: 1152547076}
-  m_Layer: 7
+  m_Layer: 14
   m_Name: Tips (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42915,7 +42915,7 @@ GameObject:
   - component: {fileID: 1266737841}
   - component: {fileID: 1266737840}
   - component: {fileID: 1266737839}
-  m_Layer: 5
+  m_Layer: 14
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43229,7 +43229,7 @@ GameObject:
   - component: {fileID: 1373243274}
   - component: {fileID: 1373243276}
   - component: {fileID: 1373243277}
-  m_Layer: 7
+  m_Layer: 14
   m_Name: Tips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43388,7 +43388,7 @@ GameObject:
   - component: {fileID: 1458133865}
   - component: {fileID: 1458133864}
   - component: {fileID: 1458133863}
-  m_Layer: 5
+  m_Layer: 14
   m_Name: Tips Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43536,7 +43536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1478238955}
   - component: {fileID: 1478238956}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: table_shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44601,7 +44601,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1865552449}
   - component: {fileID: 1865552450}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: scroll_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44763,7 +44763,7 @@ GameObject:
   - component: {fileID: 1906859344}
   - component: {fileID: 1906859343}
   - component: {fileID: 1906859342}
-  m_Layer: 5
+  m_Layer: 14
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52682,7 +52682,7 @@ GameObject:
   - component: {fileID: 2093144251}
   - component: {fileID: 2093144250}
   - component: {fileID: 2093144249}
-  m_Layer: 7
+  m_Layer: 14
   m_Name: Tips (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53883,7 +53883,7 @@ GameObject:
   - component: {fileID: 1613130359970976879}
   - component: {fileID: 1882357479703169820}
   - component: {fileID: 4243301032645016194}
-  m_Layer: 5
+  m_Layer: 14
   m_Name: Tips Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54084,7 +54084,7 @@ GameObject:
   - component: {fileID: 7593604814033659424}
   - component: {fileID: 6958451665860925623}
   - component: {fileID: 4863510754231046134}
-  m_Layer: 5
+  m_Layer: 14
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54419,7 +54419,7 @@ GameObject:
   - component: {fileID: 3501523894070134186}
   - component: {fileID: 3927523533579992956}
   - component: {fileID: 2697502856298276384}
-  m_Layer: 5
+  m_Layer: 14
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

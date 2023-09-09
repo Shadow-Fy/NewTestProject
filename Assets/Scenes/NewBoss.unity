@@ -7910,7 +7910,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.828334, y: -11.75474, z: -2}
+  m_LocalPosition: {x: 6.828374, y: -11.75474, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38256,7 +38256,7 @@ MonoBehaviour:
   groundlayer:
     serializedVersion: 2
     m_Bits: 128
-  checkradius: 0.09
+  checkradius: 0.36
   canjump: 0
   doubleJumpEffectPrefab: {fileID: 900889111706331137, guid: 989cff8283b41284ea8649f59690dac8, type: 3}
   fallMultiplier: 4
@@ -54418,7 +54418,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1754439444
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -154,8 +154,7 @@ public class CharacterStats : MonoBehaviour
             if (attacker.characterData != null)
             {
                 attacker.characterData.UpdateExp(characterData.killExp);
-                gameObject.GetComponent<BoxCollider2D>().enabled = false;
-                gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+
             }
         }
     }

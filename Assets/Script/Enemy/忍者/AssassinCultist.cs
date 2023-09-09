@@ -46,7 +46,7 @@ public class AssassinCultist : Boss
         RaycastHit2D leftCheck = Raycast(new Vector2(-1f, 0), Vector2.left, 0.2f, playerMask);
         RaycastHit2D rightCheck = Raycast(new Vector2(1f, 0), Vector2.right, 0.2f, playerMask);
 
-        if(leftCheck || rightCheck)
+        if((leftCheck || rightCheck) && !isDead)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }

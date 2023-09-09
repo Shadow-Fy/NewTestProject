@@ -282,6 +282,11 @@ public class Boss : MonoBehaviour, IDamageable, GameOverReset
             if (characterStats.CurrentHealth <= 0)
             {
                 isDead = true;
+                
+                gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+                gameObject.GetComponent<SpriteRenderer>().enabled = true; 
+
                 EventManager.Instance?.InvokeEvent(EventType.BossDie);
 
                 if (enemies.Contains(_enemy))
