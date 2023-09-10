@@ -53,6 +53,7 @@ public class Boss : MonoBehaviour, IDamageable, GameOverReset
 
     [Header("Check Data")]
     public LayerMask playerMask;    //选择Player所在的图层
+    public LayerMask groundMask;
 
     [Header("Get Hit Data")]
     [HideInInspector] public bool isDead = false;    //用于判断是否死亡
