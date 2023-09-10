@@ -40917,7 +40917,7 @@ MonoBehaviour:
   color: {r: 1, g: 0, b: 0.05406809, a: 0}
   damage: 3
   roketNum: 12
-  rocketAngel: 8
+  rocketAngel: 12
 --- !u!1 &874684820
 GameObject:
   m_ObjectHideFlags: 0
@@ -43510,6 +43510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   multiply: 0.5
   backGround: {fileID: 491689752}
+  isLoading: 0
 --- !u!4 &1460844719
 Transform:
   m_ObjectHideFlags: 0
