@@ -8,6 +8,7 @@ public class SceneControl : Singleton<SceneControl>
 {
     public float multiply;
     public Image backGround;
+    public bool isLoading;
     private float alpha = 1;
 
     protected override void Awake()
@@ -18,23 +19,29 @@ public class SceneControl : Singleton<SceneControl>
         //DontDestroyOnLoad(gameObject);
     }
 
-    public void LoadScene()
+    public void LoadScene(int scene)
     {
-        StartCoroutine(loadlevel());
+        if(isLoading)
+            return;
+        StartCoroutine(loadlevel(scene));
     }
 
     IEnumerator NewScene()
     {
+        isLoading = true;
         while (alpha >= 0)
         {
             backGround.color = new Color(1, 1, 1, alpha -= Time.deltaTime * multiply);
             yield return null;
         }
+
+        isLoading = false;
     }
 
-    IEnumerator loadlevel()
+    IEnumerator loadlevel(int scene)
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        isLoading = true;
+        AsyncOperation operation = SceneManager.LoadSceneAsync(scene);
         operation.allowSceneActivation = false;
         ObjectPool.Instance.ClearObjectPool();
         while (!operation.isDone)
@@ -48,6 +55,8 @@ public class SceneControl : Singleton<SceneControl>
 
             yield return null;
         }
+
+        //isLoading = false;
     }
 
 }

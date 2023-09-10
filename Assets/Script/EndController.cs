@@ -22,7 +22,7 @@ public class EndController : MonoBehaviour
 
     private void Update()
     {
-        if (yaSuo.health <= 0)
+        if (yaSuo.health <= 0 && !SceneControl.Instance.isLoading)
             PauseGame();
     }
 

@@ -33,7 +33,7 @@ public class ChangeScene : MonoBehaviour
 
         if (Input.anyKeyDown && !isStart)
         {
-            SceneControl.Instance.LoadScene();
+            SceneControl.Instance.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             isStart = !isStart;
         }
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 
 public class PauseMenu : MonoBehaviour
@@ -46,6 +47,8 @@ public class PauseMenu : MonoBehaviour
     //玩家按下暂停
     public void PauseGame()
     {
+        if(SceneControl.Instance.isLoading)
+            return;
         pause = true;
         Time.timeScale = 0;
         menuInPause.SetActive(true);
@@ -58,6 +61,22 @@ public class PauseMenu : MonoBehaviour
                 Debug.Log("Pause");
             })
             .SetEase(Ease.OutElastic);
+    }
+    
+    //重新开始
+    public void RestartGame()
+    {
+        Time.timeScale = 1;
+        SceneControl.Instance.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        menuInPause.SetActive(false);
+        menuInPause.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 650);
+    }
+    
+    //回到主菜单
+    public void BackToMainMenu()
+    {
+        Time.timeScale = 1;
+        SceneControl.Instance.LoadScene(0);
     }
     
 }

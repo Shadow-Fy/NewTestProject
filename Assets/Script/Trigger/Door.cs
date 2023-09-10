@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Door : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                SceneControl.Instance.LoadScene();
+                SceneControl.Instance.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
         }
     }
