@@ -11,7 +11,6 @@ public class ChangeScene : MonoBehaviour
     public TMP_Text text;
     private float colorChange = 1;
     private bool upDown = true;
-    private bool isStart = false;
 
 
     void Update()
@@ -31,10 +30,9 @@ public class ChangeScene : MonoBehaviour
         if (text != null)
             text.alpha = colorChange;
 
-        if (Input.anyKeyDown && !isStart)
+        if (Input.anyKeyDown)
         {
             SceneControl.Instance.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            isStart = !isStart;
         }
 
     }
