@@ -32,6 +32,7 @@ public class ShadowSprite : MonoBehaviour
         // playerSprite = player.GetComponent<SpriteRenderer>();
         if (userSpriteRenderer != null)
         {
+            Debug.Log("Test");
             alpha = alphaSet;
             thisSprite.sprite = userSpriteRenderer.sprite;
             transform.position = userTransform.position;
@@ -39,9 +40,6 @@ public class ShadowSprite : MonoBehaviour
             transform.rotation = userTransform.rotation;
             activeStart = Time.time;
         }
-
-
-
     }
 
     protected void Update()

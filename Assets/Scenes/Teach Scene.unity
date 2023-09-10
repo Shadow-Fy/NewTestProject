@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 13173450}
   - component: {fileID: 13173449}
   - component: {fileID: 13173452}
-  m_Layer: 12
+  m_Layer: 7
   m_Name: "\u53F3\u8FB9\u754C1"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +511,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &143503536
 GameObject:
@@ -39589,7 +39589,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 876721039
+  m_SortingLayerID: 1685048397
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1 &390016102
@@ -40792,8 +40792,8 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1721378077
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Time: 0.21
   m_PreviewTimeScale: 1
@@ -40917,7 +40917,7 @@ MonoBehaviour:
   color: {r: 1, g: 0, b: 0.05406809, a: 0}
   damage: 3
   roketNum: 12
-  rocketAngel: 12
+  rocketAngel: 8
 --- !u!1 &874684820
 GameObject:
   m_ObjectHideFlags: 0
@@ -42210,7 +42210,7 @@ Transform:
   - {fileID: 1157450103}
   - {fileID: 13173451}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1156169883
 MonoBehaviour:
@@ -42240,7 +42240,7 @@ GameObject:
   - component: {fileID: 1157450102}
   - component: {fileID: 1157450101}
   - component: {fileID: 1157450104}
-  m_Layer: 12
+  m_Layer: 7
   m_Name: "\u5DE6\u8FB9\u754C1"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42669,8 +42669,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1685048397
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 4b9f6e7e25c97c74292b68286491fb06, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -43374,7 +43374,7 @@ Transform:
   - {fileID: 2082736343}
   - {fileID: 1803555902}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1458133861
 GameObject:
@@ -43476,7 +43476,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 876721039
+  m_SortingLayerID: 1685048397
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1 &1460844717
@@ -43886,7 +43886,7 @@ RectTransform:
   - {fileID: 1053556147}
   - {fileID: 1060040032}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -44379,7 +44379,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u6309 Enter \u8FDB\u5165\u4E0B\u4E00\u4E2A\u573A\u666F"
+  m_text: "\u6309 W \u8FDB\u5165\u4E0B\u4E00\u4E2A\u573A\u666F"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0839fb02871f12049b4bcd63296b0304, type: 2}
   m_sharedMaterial: {fileID: 504725357851741463, guid: 0839fb02871f12049b4bcd63296b0304, type: 2}
@@ -44848,7 +44848,7 @@ RectTransform:
   m_Children:
   - {fileID: 2086471689}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -52760,8 +52760,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1721378077
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0ebe455870e04164a820bc3eb83c8672, type: 3}
   m_Color: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
@@ -53474,7 +53474,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 876721039
+  m_SortingLayerID: 1685048397
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &1882357479703169820
@@ -53720,6 +53720,9 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 64
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
   isDead: 0
   enemies: []
   _enemy: {fileID: 0}

@@ -12,7 +12,7 @@ public class Door : MonoBehaviour
     {
         if (isStay)
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.W))
             {
                 SceneControl.Instance.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }

@@ -45,8 +45,10 @@ public class AssassinCultist : Boss
     {
         RaycastHit2D leftCheck = Raycast(new Vector2(-1f, 0), Vector2.left, 0.2f, playerMask);
         RaycastHit2D rightCheck = Raycast(new Vector2(1f, 0), Vector2.right, 0.2f, playerMask);
+        RaycastHit2D leftGroundCheck = Raycast(new Vector2(-1f, 0), Vector2.left, 0.2f, groundMask);
+        RaycastHit2D rightGroundCheck = Raycast(new Vector2(1f, 0), Vector2.left, 0.2f, groundMask);
 
-        if((leftCheck || rightCheck) && !isDead)
+        if((leftCheck || rightCheck || leftGroundCheck || rightGroundCheck) && !isDead)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
@@ -63,6 +65,7 @@ public class AssassinCultist : Boss
 
     #region Animation Event
 
+    //Animation Event
     public void AttackDush()    //攻击冲刺
     {
         int dir = 0;
