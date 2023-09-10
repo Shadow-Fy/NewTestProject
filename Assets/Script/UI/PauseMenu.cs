@@ -66,6 +66,8 @@ public class PauseMenu : MonoBehaviour
     //重新开始
     public void RestartGame()
     {
+        Clock.Clock.Instance.EndTiming();
+        Clock.Clock.Instance.EndTiming();
         Time.timeScale = 1;
         SceneControl.Instance.LoadScene(SceneManager.GetActiveScene().buildIndex);
         menuInPause.SetActive(false);
@@ -75,6 +77,8 @@ public class PauseMenu : MonoBehaviour
     //回到主菜单
     public void BackToMainMenu()
     {
+        Clock.Clock.Instance.EndTiming();
+        Clock.Clock.Instance.EndTiming();
         Time.timeScale = 1;
         SceneControl.Instance.LoadScene(0);
     }
