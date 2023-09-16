@@ -14,15 +14,32 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         healthbar = GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        maxhealth = playerController.maxhealth;
-        currenthealth = playerController.currenthealth;
-        healthbar.fillAmount = (float)currenthealth / (float)maxhealth;
-        healthtext.text = currenthealth.ToString() + " / " + maxhealth.ToString();
+        // maxhealth = playerController.maxhealth;
+        // currenthealth = playerController.currenthealth;
+        // healthbar.fillAmount = (float)currenthealth / (float)maxhealth;
+        // healthtext.text = currenthealth.ToString() + " / " + maxhealth.ToString();
     }
+
+    public void UpdateHealthUI()
+    {
+
+    }    
+
+    // void Start()
+    // {
+    //     EventControl.Instance.PlayerEvent += FlashScreen;
+    //     defaultcolor = img.color;
+    // }
+
+    // private void OnDisable()
+    // {
+    //     EventControl.Instance.PlayerEvent -= FlashScreen;
+    // }
 }

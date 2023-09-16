@@ -8,7 +8,6 @@ public class DroneController : MonoBehaviour
 {
 
     public GameObject[] guns;
-    public GameObject[] gunsIcon;
     private int gunsNum;
     public Transform playerTR;
     public float speed = 40;
@@ -16,8 +15,9 @@ public class DroneController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         guns[0].SetActive(true);
-        gunsIcon[0].SetActive(true);
+        EventControl.Instance.PlayerGunEvent(0, gunsNum);
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class DroneController : MonoBehaviour
     private void DroneMove()
     {
         target = playerTR.position;
-        float sqrLenght = (playerTR.position - transform.position).sqrMagnitude; // ±È½ÏÏòÁ¿´óÐ¡Ê±±È½ÏËüÃÇµÄÆ½·½Êý¸ü¿ì
+        float sqrLenght = (playerTR.position - transform.position).sqrMagnitude; // ï¿½È½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ê±ï¿½È½ï¿½ï¿½ï¿½ï¿½Çµï¿½Æ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (sqrLenght > 3 * 3)
             speed = 30;
         else
@@ -50,22 +50,21 @@ public class DroneController : MonoBehaviour
 
     void SwitchGun()
     {
+        int lastcount = gunsNum;
         if (Input.GetKeyDown(KeyCode.Q))
         {
+
             guns[gunsNum].SetActive(false);
-            gunsIcon[gunsNum].SetActive(false);
             if (--gunsNum < 0) gunsNum = guns.Length - 1;
             guns[gunsNum].SetActive(true);
-            gunsIcon[gunsNum].SetActive(true);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
             guns[gunsNum].SetActive(false);
-            gunsIcon[gunsNum].SetActive(false);
             if (++gunsNum > guns.Length - 1) gunsNum = 0;
             guns[gunsNum].SetActive(true);
-            gunsIcon[gunsNum].SetActive(true);
         }
+        EventControl.Instance.PlayerGunEvent(lastcount, gunsNum);
     }
 }

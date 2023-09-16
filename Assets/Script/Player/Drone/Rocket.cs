@@ -11,6 +11,7 @@ public class Rocket : MonoBehaviour
     private Vector3 direction;
     private float lifetime = 5f;
     public float damage;
+    [SerializeField] private TrailRenderer trail;
 
 
     private void OnEnable()
@@ -29,7 +30,7 @@ public class Rocket : MonoBehaviour
 
     private void Update()
     {
-        Random.InitState((int)System.DateTime.Now.Ticks);//È¡ÏûÎ±Ëæ»ú
+        Random.InitState((int)System.DateTime.Now.Ticks);//È¡ï¿½ï¿½Î±ï¿½ï¿½ï¿½
 
         lifetime -= Time.deltaTime;
         if (lifetime <= 0)
@@ -48,6 +49,12 @@ public class Rocket : MonoBehaviour
             arrived = true;
 
         transform.position += transform.right * GetRandom(speed) * Time.deltaTime;
+    }
+
+    public void SetColor(Color color)
+    {
+        trail.startColor = color;
+        trail.endColor = new Color(color.r, color.g, color.b, 0);
     }
 
     private float GetRandom(float num)

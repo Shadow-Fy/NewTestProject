@@ -15,6 +15,7 @@ public class RPG : Gun
         {
             GameObject bullet = ObjectPool.Instance.GetObject(bulletPrefab);
             bullet.GetComponent<Rocket>().damage = damage;
+            bullet.GetComponent<Rocket>().SetColor(color);
             bullet.transform.position = muzzlePos.position;
 
             if (roketNum % 2 == 1)

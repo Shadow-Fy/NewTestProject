@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
-    [Header("»ù±¾½M¼þ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½Mï¿½ï¿½")]
     [SerializeField] protected Rigidbody2D rb;
     [SerializeField] protected Animator anim;
     [SerializeField] protected SpriteRenderer spriteRenderer;
@@ -14,13 +14,12 @@ public class PlayerController : MonoBehaviour, IDamageable
     protected float horizontalmove_int;
     protected float verticalmove_int;
 
-    public float maxhealth;
-    public float currenthealth;
+    public PlayerModel playerModel = new PlayerModel();
     public bool isdead;
     public float hurtCD = 0.4f;
     private float hurtTime;
 
-    [Header("ÌøÔ¾Ïà¹Ø")]
+    [Header("ï¿½ï¿½Ô¾ï¿½ï¿½ï¿½")]
     public bool isground;
     public bool isjump;
     public int jumpcount;
@@ -33,7 +32,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     public float fallMultiplier = 4f;
     public float lowJumpMultiplier = 7f;
 
-    [Header("ÒÆ¶¯Ïà¹Ø")]
+    [Header("ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½")]
     public float normalspeed = 10;
     public float speed = 10;
     public bool touchcheck = false;
@@ -43,9 +42,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     private float releaseDtime;
     private float pressAtime;
     private float pressDtime;
-    protected bool isRun; //ÊÇ·ñË«»÷ÅÜ²½
+    protected bool isRun; //ï¿½Ç·ï¿½Ë«ï¿½ï¿½ï¿½Ü²ï¿½
 
-    [Header("³å´ÌÏà¹Ø")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     protected float shadowcd = 0;
     public float dashTime;
     protected float dashTimeleft;
@@ -56,24 +55,26 @@ public class PlayerController : MonoBehaviour, IDamageable
     public GameObject shadowPrefab;
     public GameObject dashEffectprefab;
     public GameObject dashDustPrefab;
-    private ScreenFlash sf;
-    public GameObject sfc;
+    // private ScreenFlash sf;
+    // public GameObject sfc;
 
 
     // Update is called once per frame
     public virtual void OnEnable()
     {
-        currenthealth = maxhealth;
+
     }
 
     public virtual void Start()
     {
         hurtTime = hurtCD;
-        sf = GetComponent<ScreenFlash>();
+
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        //MMMMrDÐÞ¸Ä£ºÏòGameManager×¢²á
         GameManager.Instance.RegisterPlayer(this);
+
+        playerModel.InitPlayerHealth();
+        EventControl.Instance.InitEvent(playerModel.CurrentHealth, playerModel.MaxHealth);
     }
 
     public virtual void Update()
@@ -110,14 +111,14 @@ public class PlayerController : MonoBehaviour, IDamageable
         Jump();
     }
 
-    protected void DoubleTouch() // Ë«»÷ÅÜ²½
+    protected void DoubleTouch() // Ë«ï¿½ï¿½ï¿½Ü²ï¿½
     {
-        if (Input.GetKeyUp(KeyCode.A))  // µÚÒ»´Î°´ÏÂ
+        if (Input.GetKeyUp(KeyCode.A))  // ï¿½ï¿½Ò»ï¿½Î°ï¿½ï¿½ï¿½
         {
             releaseAtime = Time.time;
         }
 
-        if (Input.GetKeyUp(KeyCode.D))  // µÚÒ»´Î°´ÏÂ
+        if (Input.GetKeyUp(KeyCode.D))  // ï¿½ï¿½Ò»ï¿½Î°ï¿½ï¿½ï¿½
         {
             releaseDtime = Time.time;
         }
@@ -136,7 +137,7 @@ public class PlayerController : MonoBehaviour, IDamageable
                 shadowcd += Time.deltaTime;
                 if (shadowcd >= 0.1f)
                 {
-                    //MMMMrDÐÞ¸Ä£º¸üÐÂÍæ¼ÒÊ¹ÓÃShadowµÄ·½Ê½
+                    //MMMMrDï¿½Þ¸Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½Shadowï¿½Ä·ï¿½Ê½
                     GameObject shadowSprite = ObjectPool.Instance.GetObjectButNotActive(shadowPrefab);
                     shadowSprite.GetComponent<ShadowSprite>().Init(transform, spriteRenderer);
                     shadowSprite.SetActive(true);
@@ -165,7 +166,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))  // ÖØÖÃËÙ¶È
+        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))  // ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
         {
             isRun = false;
             speed = normalspeed;
@@ -294,14 +295,12 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if (hurtTime <= 0)
         {
-            sfc.SetActive(true);
-            sf.FlashScreen();
-            //anim.SetTrigger("hit");
-            currenthealth -= damage;
+            playerModel.ChangePlayerHealth(damage);
+            EventControl.Instance.GetHitEvent(playerModel.CurrentHealth, playerModel.MaxHealth);
+            // currenthealth -= damage;
             hurtTime = hurtCD;
-            if (currenthealth < 1)
+            if (playerModel.IsDead())
             {
-                currenthealth = 0;
                 isdead = true;
             }
         }

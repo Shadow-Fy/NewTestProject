@@ -17,7 +17,7 @@ public class EndController : MonoBehaviour
     void FixedUpdate()
     {
         currentTime.text = time.text;
-        playerHealth.text = playerController.currenthealth.ToString();
+        playerHealth.text = playerController.playerModel.CurrentHealth.ToString();
     }
 
     private void Update()
@@ -26,7 +26,6 @@ public class EndController : MonoBehaviour
             PauseGame();
     }
 
-    // Update is called once per frame
     public void PauseGame()
     {
         Time.timeScale = 0;
