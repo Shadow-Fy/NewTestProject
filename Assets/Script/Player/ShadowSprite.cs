@@ -32,7 +32,6 @@ public class ShadowSprite : MonoBehaviour
         // playerSprite = player.GetComponent<SpriteRenderer>();
         if (userSpriteRenderer != null)
         {
-            Debug.Log("Test");
             alpha = alphaSet;
             thisSprite.sprite = userSpriteRenderer.sprite;
             transform.position = userTransform.position;

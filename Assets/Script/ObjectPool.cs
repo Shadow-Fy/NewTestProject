@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ObjectPool
 {
     private static ObjectPool instance;
@@ -40,7 +41,6 @@ public class ObjectPool
         obj = objectPool[prefab.name].Dequeue();
         obj.SetActive(true);
         return obj;
-
     }
 
     public GameObject GetObjectButNotActive(GameObject prefab)
@@ -63,7 +63,7 @@ public class ObjectPool
                 obj.transform.SetParent(child.transform);
             }
         obj = objectPool[prefab.name].Dequeue();
-        obj.SetActive(false);
+        //obj.SetActive(false);
         return obj;
     }
 
