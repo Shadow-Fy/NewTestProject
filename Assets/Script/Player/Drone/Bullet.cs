@@ -6,8 +6,9 @@ public class Bullet : MonoBehaviour
 {
     public float damage;
     public float speed;
-    [SerializeField] private TrailRenderer trail;
-    private float lifetime = 5f;
+    [SerializeField] protected TrailRenderer trail;
+    protected float lifetime = 5f;
+    protected Vector2 targetPos;
     // Start is called before the first frame update
     private void OnEnable()
     {
@@ -24,16 +25,35 @@ public class Bullet : MonoBehaviour
         }
         transform.position += transform.right * speed * Time.deltaTime;
     }
-    public void SetColor(Color color)
+    public Bullet SetColor(Color color)
     {
         trail.startColor = color;
         trail.endColor = new Color(color.r, color.g, color.b, 0);
+        return this;
     }
 
     public void SetSpeed(Vector3 direction, float _speed)
     {
         transform.right = direction;
         speed = _speed;
+    }
+
+    public Bullet SetTarget(Vector2 _target)
+    {
+        targetPos = _target;
+        speed = GetRandom(speed);
+        return this;
+    }
+
+    public Bullet SetDamage(float damage)
+    {
+        this.damage = damage;
+        return this;
+    }
+
+    public float GetRandom(float num)
+    {
+        return Random.Range(num - 25, num);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

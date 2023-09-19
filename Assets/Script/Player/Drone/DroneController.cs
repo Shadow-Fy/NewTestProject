@@ -17,7 +17,8 @@ public class DroneController : MonoBehaviour
     {
 
         guns[0].SetActive(true);
-        EventControl.Instance.PlayerGunEvent(0, gunsNum);
+        if (EventControl.Instance != null)
+            EventControl.Instance.PlayerGunEvent(0, gunsNum);
     }
 
     // Update is called once per frame

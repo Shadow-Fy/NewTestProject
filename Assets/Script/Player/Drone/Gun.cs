@@ -5,14 +5,14 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     public float speed;
-    public float interval;//Éä»÷¼ä¸ôÊ±¼ä
-    public GameObject bulletPrefab;//×Óµ¯Ô¤ÖÆÌå
-    public GameObject shellPrefab;//µ¯¿ÇÔ¤ÖÆÌå
-    protected Transform muzzlePos;//Ç¹¿ÚÎ»ÖÃ
-    protected Transform shellPos;//µ¯¿ÇÎ»ÖÃ
-    protected Vector2 mousePos;//Êó±êÎ»ÖÃ
-    protected Vector2 direction;//·¢Éä·½Ïò
-    public Color color;//×Óµ¯ÑÕÉ«
+    public float interval;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+    // public GameObject bulletPrefab;//ï¿½Óµï¿½Ô¤ï¿½ï¿½ï¿½ï¿½
+    public GameObject shellPrefab;//ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½
+    protected Transform muzzlePos;//Ç¹ï¿½ï¿½Î»ï¿½ï¿½
+    protected Transform shellPos;//ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
+    protected Vector2 mousePos;//ï¿½ï¿½ï¿½Î»ï¿½ï¿½
+    protected Vector2 direction;//ï¿½ï¿½ï¿½ä·½ï¿½ï¿½
+    public Color color;//ï¿½Óµï¿½ï¿½ï¿½É«
     protected float timer;
     public float damage;
 
@@ -53,17 +53,17 @@ public class Gun : MonoBehaviour
 
     protected virtual void Fire()
     {
-        GameObject bullet = ObjectPool.Instance.GetObject(bulletPrefab);
-        bullet.transform.position = muzzlePos.position;
-        bullet.GetComponent<Bullet>().damage = damage;
+        // GameObject bullet = ObjectPool.Instance.GetObject(bulletPrefab);
+        // bullet.transform.position = muzzlePos.position;
+        // bullet.GetComponent<Bullet>().damage = damage;
 
-        float angel = Random.Range(-3f, 3f);
-        bullet.GetComponent<Bullet>().SetSpeed(Quaternion.AngleAxis(angel, Vector3.forward) * direction, speed);
-        bullet.GetComponent<Bullet>().SetColor(color);
+        // float angel = Random.Range(-3f, 3f);
+        // bullet.GetComponent<Bullet>().SetSpeed(Quaternion.AngleAxis(angel, Vector3.forward) * direction, speed);
+        // bullet.GetComponent<Bullet>().SetColor(color);
 
-        GameObject shell = ObjectPool.Instance.GetObject(shellPrefab);
-        shell.transform.position = shellPos.position;
-        shell.transform.rotation = shellPos.rotation;
+        // GameObject shell = ObjectPool.Instance.GetObject(shellPrefab);
+        // shell.transform.position = shellPos.position;
+        // shell.transform.rotation = shellPos.rotation;
     }
 
 }

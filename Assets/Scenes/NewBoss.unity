@@ -8047,7 +8047,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.828348, y: -11.75474, z: -2}
+  m_LocalPosition: {x: 6.828339, y: -11.75474, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17397,7 +17397,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 70
   interval: 1
-  bulletPrefab: {fileID: 4523268926781837518, guid: 2016e6616397a4840afcbb34340cc728, type: 3}
   shellPrefab: {fileID: 4691297613483531048, guid: 42340d7cad19ac24dabccd38a0b06ac7, type: 3}
   color: {r: 1, g: 0, b: 0, a: 1}
   damage: 25
@@ -32425,9 +32424,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e62a61152226f47a331296c6624902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  interval: 0.3
-  bulletPrefab: {fileID: 2605524155424225254, guid: 4774d5c86f4184044bd7b27c4ea9ab51, type: 3}
+  speed: 40
+  interval: 0.6
   shellPrefab: {fileID: 4691297613483531048, guid: 42340d7cad19ac24dabccd38a0b06ac7, type: 3}
   color: {r: 0.00126791, g: 1, b: 0, a: 1}
   damage: 3
@@ -33046,7 +33044,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   interval: 0.1
-  bulletPrefab: {fileID: 4523268926781837518, guid: 2016e6616397a4840afcbb34340cc728, type: 3}
   shellPrefab: {fileID: 4691297613483531048, guid: 42340d7cad19ac24dabccd38a0b06ac7, type: 3}
   color: {r: 0, g: 1, b: 0.99020815, a: 1}
   damage: 6
@@ -56939,7 +56936,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 25
   interval: 0.7
-  bulletPrefab: {fileID: 4523268926781837518, guid: 2016e6616397a4840afcbb34340cc728, type: 3}
   shellPrefab: {fileID: 4691297613483531048, guid: 42340d7cad19ac24dabccd38a0b06ac7, type: 3}
   color: {r: 1, g: 0, b: 0.8301325, a: 1}
   damage: 14
@@ -58240,6 +58236,55 @@ Transform:
   - {fileID: 1725089192}
   m_Father: {fileID: 614898551}
   m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1936605892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1936605894}
+  - component: {fileID: 1936605893}
+  m_Layer: 0
+  m_Name: BulletFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1936605893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936605892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1087256989e3209408df5e7d732c7883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rifleBulletPrefab: {fileID: 4523268926781837518, guid: 2016e6616397a4840afcbb34340cc728, type: 3}
+  sniperBulletPrefab: {fileID: 4523268926781837518, guid: 2016e6616397a4840afcbb34340cc728, type: 3}
+  RPGBulletPrefab: {fileID: 2605524155424225254, guid: 4774d5c86f4184044bd7b27c4ea9ab51, type: 3}
+  shotGunBulletPrefab: {fileID: 4523268926781837518, guid: 2016e6616397a4840afcbb34340cc728, type: 3}
+  ShellPrefab: {fileID: 4691297613483531048, guid: 42340d7cad19ac24dabccd38a0b06ac7, type: 3}
+--- !u!4 &1936605894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936605892}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.759823, y: -3.4311318, z: 10.962276}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1936838324
 GameObject:
