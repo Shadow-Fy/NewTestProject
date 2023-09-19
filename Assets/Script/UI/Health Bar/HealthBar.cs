@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assassin_Cultist_State;
 
 public class HealthBar : MonoBehaviour, IDamageable
 {
@@ -22,7 +23,9 @@ public class HealthBar : MonoBehaviour, IDamageable
         myRotaion = Quaternion.identity;
         characterStats = transform.parent.gameObject.GetComponent<CharacterStats>();
 
-        UpdateHealthBar(); // 更新血条显示
+        //UpdateHealthBar(100, 100); // 更新血条显示
+
+        EventManager.Instance?.AddListener<AssassinCultist_State>(AssassinCultist_State.GetHit, UpdateHealthBar);
 
         // if(characterStats != null){
         //     maxHp = characterStats.MaxHealth;
@@ -40,7 +43,7 @@ public class HealthBar : MonoBehaviour, IDamageable
         currentHp = Mathf.Clamp(health, 0f, maxHp);
 
         // 更新血条显示
-        UpdateHealthBar();
+        //UpdateHealthBar(100, 100);
 
         // 当血量小于等于0时，触发死亡效果
         if (currentHp <= 0)
@@ -77,21 +80,25 @@ public class HealthBar : MonoBehaviour, IDamageable
     }
 
     // 更新血条显示
-    private void UpdateHealthBar()
+    private void UpdateHealthBar(string json)
     {
-        // 根据当前血量与最大血量计算并更新血条显示
-        hpImg.fillAmount = (float)characterStats.CurrentHealth / characterStats.MaxHealth;
-        if (characterStats.CurrentHealth <= 0)
+        AssassinCultistData data = JsonUtility.FromJson<AssassinCultistData>(json);
+        if (data != null)
         {
-            gameObject.SetActive(false);
+            // 根据当前血量与最大血量计算并更新血条显示
+            hpImg.fillAmount = data.currentHealth / data.maxHealth;
+            if (data.currentHealth <= 0)
+            {
+                gameObject.SetActive(false);
+            }
+            // 缓慢减少血量变化效果的填充值
+            if (updateCoroutine != null)
+            {
+                StopCoroutine(updateCoroutine);
+            }
+            if (data.currentHealth > 0)
+                updateCoroutine = StartCoroutine(UpdateHpEffect());
         }
-        // 缓慢减少血量变化效果的填充值
-        if (updateCoroutine != null)
-        {
-            StopCoroutine(updateCoroutine);
-        }
-        if (characterStats.CurrentHealth > 0)
-            updateCoroutine = StartCoroutine(UpdateHpEffect());
     }
 
     // 协程，用于实现缓慢减少血量变化效果的填充值
@@ -112,6 +119,6 @@ public class HealthBar : MonoBehaviour, IDamageable
 
     public void GetHit(float damage)
     {
-        UpdateHealthBar();
+        //UpdateHealthBar();
     }
 }
